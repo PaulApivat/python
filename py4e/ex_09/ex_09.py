@@ -33,3 +33,13 @@ for key, value in di.items():
         theword = key
 
 print('The largest word is:', theword, largest)
+
+# Summary
+# What is a collection (dictionary)?
+# Lists vs Dictionary (order and indexing)
+# Dictionary constants
+# how to find the most common words
+# using the get() method
+# hashing and lack of order
+# writing dictionary loops
+# sorting dictionaries
