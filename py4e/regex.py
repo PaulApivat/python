@@ -35,7 +35,7 @@ for line in hand:
 
 # Matching and Extracting
 x = 'My 2 favorite numbers are 19 and 42'
-y = re.findall('[0-9]+', x)    # [0-9]+ is 'one or more numbers'
+y = re.findall('[0-9]+', x)    # [0-9]+ is 'any number, one or more numbers'
 print(y)
 
 v = re.findall('[aeiou]+', x)
@@ -64,3 +64,60 @@ print(y)
 x = 'From paul.apivat@gmail.com Sat Jan 8 09:14:16 2008'
 y = re.findall('^From (\S+@\S+)', x)
 print(y)
+
+# REGEX Practical Application
+
+# Old way of extracting email
+
+x = 'From paul.apivat@sgs.tu.ac.th Sat Jan 8 09:14:16 2021'
+atpos = x.find('@')
+print(atpos)  # 16
+
+sppos = x.find(' ', atpos)
+print(sppos)  # 29
+
+email = x[atpos+1: sppos]
+print(email)
+
+
+# The Double Split Pattern
+words = x.split()
+email = words[1]
+pieces = email.split('@')
+print(pieces[1])
+
+
+# Regex Version
+x = 'From paul.apivat@sgs.tu.ac.th Sat Jan 8 09:14:16 2021'
+# search fill find @, then extract [^ ] - not a blank, * is mean of them (greedy)
+y = re.findall('@([^ ]*)', x)
+print(y)
+
+
+# Cooler Regex Version (more fine tuned)
+x = 'From paul.apivat@sgs.tu.ac.th Sat Jan 8 09:14:16 2021'
+# both an IF statement and Regex-extraction
+y = re.findall('^From .*@([^ ]*)', x)
+print(y)
+
+
+# Spam Confidence
+hand = open('mbox-short.txt')
+numlist = list()
+for line in hand:
+    line = line.rstrip()
+    stuff = re.findall('^X-DSPAM-Confidence: ([0-9.]+)', line)
+    if len(stuff) != 1:
+        continue
+    num = float(stuff[0])
+    numlist.append(num)
+print('Regular:', numlist, '\nMaximum:', max(numlist))
+
+
+# Escape Character (\)
+x = 'We just received $10.00 for cookies.'
+y = re.findall('\$[0-9.]+', x)
+print(y)
+
+# SUMMARY
+# cryptic but powerful
