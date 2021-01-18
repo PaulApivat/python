@@ -18,13 +18,16 @@ for dct in data:
     for k, v in dct.items():
         if k == 'data':
             vee = v
-            count += 1           # helping to diagnose a problem
+            # helping to diagnose a problem (line 233), empty list
+            count += 1
             print(vee, count)
             #print("this is vee:", vee)
-            for k_i, v_i in vee[0].items():  # <-- Bug
-                if k_i == 'post':
-                    vee2 = v_i
+            if len(vee) > 0:
+                for k_i, v_i in vee[0].items():  # <-- Bug
+                    if k_i == 'post':
+                        vee2 = v_i
                     #print("this is vee2:", vee2)
-                    empty_lst.append(vee2)
+                        empty_lst.append(vee2)
 
 print("This is the empty list:", empty_lst)
+print("Length of list: ", len(empty_lst))
