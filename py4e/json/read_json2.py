@@ -31,3 +31,6 @@ for dct in data:
 
 print("This is the empty list:", empty_lst)
 print("Length of list: ", len(empty_lst))
+
+# for x,y in enumerate(empty_lst):
+#    print(x,y)
