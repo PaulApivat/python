@@ -53,3 +53,20 @@ print("Non-Flatten list: ", new_lst)
 # Flatten a list
 flat_new_lst = [item for sublist in new_lst for item in sublist]
 print("Flatten list: ", len(flat_new_lst))
+
+
+# Initialize New Dictionary to Count Words
+counts = dict()
+
+for word in flat_new_lst:
+    counts[word] = counts.get(word, 0) + 1
+print("\nA count of all the words: \n", counts)
+
+# Sort dictionary by keys
+sorted_dict = dict()
+
+sorted_keys = sorted(counts, key=counts.get)
+
+for w in sorted_keys:
+    sorted_dict[w] = counts[w]
+print("\nSorted dictionary: \n", sorted_dict)
