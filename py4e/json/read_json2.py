@@ -1,3 +1,4 @@
+import nltk
 import json
 
 # load json into python, assign to 'data'
@@ -34,3 +35,21 @@ print("Length of list: ", len(empty_lst))
 
 # for x,y in enumerate(empty_lst):
 #    print(x,y)
+
+# Tokenization (aka Text Segmentation or Lexical Analysis)
+nltk.download('punkt')
+
+# Sample tokenization of most recent post
+sample_words = nltk.word_tokenize(empty_lst[0])
+print(sample_words)
+
+new_lst = [nltk.word_tokenize(sentence) for sentence in empty_lst]
+print("Non-Flatten list: ", new_lst)
+
+#new_lst2 = []
+# for sentence in empty_lst:
+#    new_lst2.append(nltk.word_tokenize(sentence))
+
+# Flatten a list
+flat_new_lst = [item for sublist in new_lst for item in sublist]
+print("Flatten list: ", len(flat_new_lst))
