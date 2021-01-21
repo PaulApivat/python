@@ -1,7 +1,10 @@
+from nltk.stem import LancasterStemmer, WordNetLemmatizer
+from nltk.corpus import stopwords
 import re
 import unicodedata
 import nltk
 import json
+import inflect
 
 # load json into python, assign to 'data'
 with open('your_posts_1.json') as file:
@@ -52,7 +55,7 @@ print("Non-Flatten list: ", new_lst)
 # for sentence in empty_lst:
 #    new_lst2.append(nltk.word_tokenize(sentence))
 
-# Flatten a list
+# Flatten a list (44591 words)
 flat_new_lst = [item for sublist in new_lst for item in sublist]
 print("Flatten list: ", len(flat_new_lst))
 
@@ -113,4 +116,73 @@ def remove_punctuation(words):
             new_words.append(new_word)
     return new_words
 
-# flat_new_lst4 = remove_punctuation(flat_new_lst3)   - length of flat_new_lst4 < flat_new_lst3
+# flat_new_lst4 = remove_punctuation(flat_new_lst3)   - length of flat_new_lst4 < flat_new_lst3    (length: 35640)
+
+
+def replace_numbers(words):
+    """Replace all interger occurrences in list of tokenized words with textual representation"""
+    p = inflect.engine()
+    new_words = []
+    for word in words:
+        if word.isdigit():
+            new_word = p.number_to_words(word)
+            new_words.append(new_word)
+        else:
+            new_words.append(word)
+    return new_words
+
+# flat_new_lst5 = replace_numbers(flat_new_lst4)
+
+
+nltk.download('stopwords')
+
+
+def remove_stopwords(words):
+    """Remove stop words from list of tokenized words"""
+    new_words = []
+    for word in words:
+        if word not in stopwords.words('english'):
+            new_words.append(word)
+    return new_words
+
+# flat_new_lst6 = remove_stopwords(flat_new_lst5) -- length flat_new_lst6 < flat_new_lst5 after remove stop words (length: 22675)
+
+
+def stem_words(words):
+    """Stem words in a list of tokenized words"""
+    stemmer = LancasterStemmer()
+    stems = []
+    for word in words:
+        stem = stemmer.stem(word)
+        stems.append(stem)
+    return stems
+
+# flat_new_lst7 = stem_words(flat_new_lst6)
+
+
+nltk.download('wordnet')
+
+
+def lemmatize_verbs(words):
+    """Lemmatize verbs in a list of tokenized words"""
+    lemmatizer = WordNetLemmatizer()
+    lemmas = []
+    for word in words:
+        lemma = lemmatizer.lemmatize(word, pos='v')
+        lemmas.append(lemma)
+    return lemmas
+
+# flat_new_lst8 = lemmatize_verbs(flat_new_lst7)
+
+
+def normalize(words):
+    words = remove_non_ascii(words)
+    words = to_lowercase(words)
+    words = remove_punctuation(words)
+    words = replace_numbers(words)
+    words = remove_stopwords(words)
+    return words
+
+
+words = normalize(flat_new_lst)
+print(words)
