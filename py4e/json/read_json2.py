@@ -1,3 +1,4 @@
+import re
 import unicodedata
 import nltk
 import json
@@ -101,3 +102,15 @@ def to_lowercase(words):
     return new_words
 
 # flat_new_lst3 = to_lowercase(flat_new_lst2)
+
+
+def remove_punctuation(words):
+    """Remove punctuation from list of tokenized words"""
+    new_words = []
+    for word in words:
+        new_word = re.sub(r'[^\w\s]', '', word)
+        if new_word != '':
+            new_words.append(new_word)
+    return new_words
+
+# flat_new_lst4 = remove_punctuation(flat_new_lst3)   - length of flat_new_lst4 < flat_new_lst3
