@@ -1,3 +1,4 @@
+import unicodedata
 import nltk
 import json
 
@@ -70,3 +71,33 @@ sorted_keys = sorted(counts, key=counts.get)
 for w in sorted_keys:
     sorted_dict[w] = counts[w]
 print("\nSorted dictionary: \n", sorted_dict)
+
+# Normalization needs to be done on a list
+# source: https://www.kdnuggets.com/2018/03/text-data-preprocessing-walkthrough-python.html
+
+
+# use 'flat_new_lst' (List) instead of 'sorted_dict' (Dictionary)
+# The TIS-620 (Thai Industrial Standard 620-2533) is structured Extended ASCII, full compatibility w 7-bit ASCII
+
+
+def remove_non_ascii(words):
+    """Remove non-ASCII character from List of tokenized words"""
+    new_words = []
+    for word in words:
+        new_word = unicodedata.normalize('NFKD', word).encode(
+            'ascii', 'ignore').decode('utf-8', 'ignore')
+        new_words.append(new_word)
+    return new_words
+
+# flat_new_lst2 = remove_non_ascii(flat_new_lst)
+
+
+def to_lowercase(words):
+    """Convert all characters to lowercase from List of tokenized words"""
+    new_words = []
+    for word in words:
+        new_word = word.lower()
+        new_words.append(new_word)
+    return new_words
+
+# flat_new_lst3 = to_lowercase(flat_new_lst2)
