@@ -155,7 +155,10 @@ def normalize(words):
 
 
 words = normalize(flat_word_token)
-print("Length of words list: ", len(words))
+print("Length of words list: ", len(words))  # 22676
+
+sents = normalize(flat_sent_token)
+print("Length of sentences list: ", len(sents))   # 3194
 
 
 ##### Find Frequency Distribution ######
@@ -166,3 +169,7 @@ fdist_word.most_common(50)
 
 # Plot Frequency Graph
 fdist_word.plot(50)
+
+# Find frequency of sentence
+fdist_sent = FreqDist(sents)
+fdist_sent.most_common(10)   # TELLING
