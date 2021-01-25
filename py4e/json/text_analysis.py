@@ -160,6 +160,19 @@ print("Length of words list: ", len(words))  # 22676
 sents = normalize(flat_sent_token)
 print("Length of sentences list: ", len(sents))   # 3194
 
+##### Separate Stems & Lemmatization #####
+
+
+def stem_and_lemmatize(words):
+    stems = stem_words(words)
+    lemmas = lemmatize_verbs(words)
+    return stems, lemmas
+
+
+stems, lemmas = stem_and_lemmatize(words)
+print('Length of Word Stemmed: \n', len(stems))
+print('\nLength of Lemmatized Word:\n', len(lemmas))
+
 
 ##### Find Frequency Distribution ######
 
@@ -173,3 +186,11 @@ fdist_word.plot(50)
 # Find frequency of sentence
 fdist_sent = FreqDist(sents)
 fdist_sent.most_common(10)   # TELLING
+
+# Frequency of (Word) STEMS
+fdist_stem_word = FreqDist(stems)
+fdist_stem_word.most_common(50)
+
+# Frequency of (Word) LEMMAS
+fdist_lemmas_word = FreqDist(lemmas)
+fdist_lemmas_word.most_common(50)
