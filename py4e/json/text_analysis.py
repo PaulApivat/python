@@ -1,3 +1,5 @@
+import pandas as pd
+from nltk.sentiment.vader import SentimentIntensityAnalyzer
 from nltk.stem import LancasterStemmer, WordNetLemmatizer
 from nltk.corpus import stopwords
 from nltk.probability import FreqDist
@@ -174,6 +176,18 @@ print('Length of Word Stemmed: \n', len(stems))
 print('\nLength of Lemmatized Word:\n', len(lemmas))
 
 
+##### Part of Speech Tagging #####
+# Note: use flat_word_token
+# Note: use flat_sent_token
+
+
+# nltk.download('averaged_perceptron_tagger')
+
+# Sample
+# print(nltk.pos_tag(flat_word_token[0:10]))
+# print(nltk.pos_tag(flat_sent_token[0:10]))
+
+
 ##### Find Frequency Distribution ######
 
 # Find frequency of words
@@ -194,3 +208,37 @@ fdist_stem_word.most_common(50)
 # Frequency of (Word) LEMMAS
 fdist_lemmas_word = FreqDist(lemmas)
 fdist_lemmas_word.most_common(50)
+
+
+### VADER Sentiment Intensity Analyzer ###
+
+# nltk.download('vader_lexicon')
+
+sid = SentimentIntensityAnalyzer()
+
+# for sent in sents[0:10]:
+#    sent_scores = sid.polarity_scores(sent)
+#    print(sent, sent_scores)
+#    print("Type sent", type(sent), "Type sent_scores", type(sent_scores))
+
+
+# for sent in sents:
+#    sent_scores = sid.polarity_scores(sent)
+#    df = pd.DataFrame(sent, list(sent_scores.items()), columns=['sentence'])
+#    print("Data Frame Shape: ", df.shape)
+
+sentiment = []
+
+for sent in sents:
+    sent1 = sent
+    sent_scores = sid.polarity_scores(sent1)
+    sentiment.append((sent1, sent_scores))
+    # print(sentiment)
+
+cols = ['sentence', 'numbers']
+
+result = pd.DataFrame(sentiment, columns=cols)
+
+print("First five rows of results: ", result.head())
+
+# result.to_csv('sent_sentiment.csv')
