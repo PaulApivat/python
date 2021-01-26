@@ -24,3 +24,10 @@ df3 <- df2 %>%
 # neu 2526.149
 # pos 568.288
 
+df3 %>%
+    select(sentence:pos) %>%
+    pivot_longer(cols = neg:pos, names_to = 'polarity', values_to = 'value') %>%
+    ggplot(aes(x = sentence, y = value, fill=polarity)) +
+    geom_area()
+    
+
