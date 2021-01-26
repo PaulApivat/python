@@ -253,4 +253,4 @@ print("First five rows of results2: ", result2.head())
 # 3194 * 4 = 12776
 
 # result.to_csv('sent_sentiment.csv')
-# result2.to_csv('sent_sentiment_2.csv')
+# result2.to_csv('sent_sentiment_2.csv', index=False)
