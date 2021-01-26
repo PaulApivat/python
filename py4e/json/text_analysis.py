@@ -228,17 +228,29 @@ sid = SentimentIntensityAnalyzer()
 #    print("Data Frame Shape: ", df.shape)
 
 sentiment = []
+sentiment2 = []
 
 for sent in sents:
     sent1 = sent
     sent_scores = sid.polarity_scores(sent1)
+    for x, y in sent_scores.items():
+        sentiment2.append((x, y))
     sentiment.append((sent1, sent_scores))
     # print(sentiment)
 
+# sentiment
 cols = ['sentence', 'numbers']
-
 result = pd.DataFrame(sentiment, columns=cols)
-
 print("First five rows of results: ", result.head())
 
+# sentiment2
+cols2 = ['label', 'values']
+result2 = pd.DataFrame(sentiment2, columns=cols2)
+print("First five rows of results2: ", result2.head())
+
+# len(sentiment)  3194
+# len(sentiment2) 12776
+# 3194 * 4 = 12776
+
 # result.to_csv('sent_sentiment.csv')
+# result2.to_csv('sent_sentiment_2.csv')
