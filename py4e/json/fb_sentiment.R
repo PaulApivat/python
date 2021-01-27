@@ -25,9 +25,40 @@ df3 <- df2 %>%
 # pos 568.288
 
 df3 %>%
-    select(sentence:pos) %>%
+    select(row:pos) %>%
     pivot_longer(cols = neg:pos, names_to = 'polarity', values_to = 'value') %>%
-    ggplot(aes(x = sentence, y = value, fill=polarity)) +
-    geom_area()
-    
+    #group_by(row) %>%
+    ggplot(aes(x = row, y = value, fill=polarity)) +
+    geom_area() +
+    theme_minimal() +
+    scale_fill_manual(values = c("#ef8a62", "black", "#67a9cf")) +     # "#f7f7f7"
+    theme(
+        legend.position = 'bottom'
+    ) +
+    labs(
+        x = "Posts",
+        y = "Value",
+        fill = "Polarity",
+        title = "Facebook Post Polarity Index: 2006 - 2020",
+        subtitle = "Using Python NLTK Vader Library",
+        caption = "Data & Visualization: @paulapivat"
+    )
+
+# just negative or positive
+df3 %>%
+    select(row:pos) %>%
+    pivot_longer(cols = neg:pos, names_to = 'polarity', values_to = 'value') %>%
+    filter(polarity=='pos') %>%
+    ggplot(aes(x = row, y = value)) +
+    geom_line()
+
+# density plot: neg, neu or pos
+df3 %>%
+    select(row:pos) %>%
+    pivot_longer(cols = neg:pos, names_to = 'polarity', values_to = 'value') %>%
+    filter(polarity=='neu') %>%
+    ggplot(aes(x = value)) +
+    geom_density(fill="#69b3a2", color="#e9ecef", alpha=0.8)
+
+# dou
 
