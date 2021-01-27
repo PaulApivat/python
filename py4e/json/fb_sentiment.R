@@ -103,7 +103,15 @@ df3 %>%
     filter(polarity=='pos') %>%
     filter(value > 0) %>%
     ggplot(aes(x = value)) +
-    geom_histogram(fill="#69b3a2")
+    geom_histogram(fill="#69b3a2") +
+    theme_minimal() +
+    labs(
+        title = "Distribution of Positivity Scores",
+        subtitle = "Facebook Posts 2006 - 2020",
+        caption = "Data & Visualization: @paulapivat",
+        x = "Positivity Score",
+        y = "Number of Sentences"
+    )
 
 # Histogram: Negative
 df3 %>%
@@ -112,7 +120,21 @@ df3 %>%
     filter(polarity=='neg') %>%
     filter(value > 0) %>%
     ggplot(aes(x = value)) +
-    geom_histogram(fill="#404080")
+    geom_histogram(fill="#404080")+
+    theme_minimal() +
+    labs(
+        title = "Distribution of Negativity Scores",
+        subtitle = "Facebook Posts 2006 - 2020",
+        caption = "Data & Visualization: @paulapivat",
+        x = "Negativity Score",
+        y = "Number of Sentences"
+    )
+
+
+# Histogram: Both Overlap
+df3 %>%
+    select(row:pos) %>%
+    pivot_longer(cols = neg:pos, names_to = 'polarity', values_to = 'value') %>%
 
 
 
