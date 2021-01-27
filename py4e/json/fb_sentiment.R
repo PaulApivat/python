@@ -24,6 +24,8 @@ df3 <- df2 %>%
 # neu 2526.149
 # pos 568.288
 
+# Sentiment Line ----
+
 df3 %>%
     select(row:pos) %>%
     pivot_longer(cols = neg:pos, names_to = 'polarity', values_to = 'value') %>%
@@ -78,7 +80,7 @@ df3 %>%
 
 
 
-# Density is harder to interpret
+# Density ----
 
 # density plot: neg, neu or pos
 df3 %>%
@@ -96,8 +98,11 @@ df3 %>%
     geom_density(aes(x=neg, y = ..density..), fill="#69b3a2")+
     geom_density(aes(x=pos, y = -..density..), fill= "#404080")
 
+# HIstogram ----
+
+
 # Histogram: Positive
-df3 %>%
+pos_histo <- df3 %>%
     select(row:pos) %>%
     pivot_longer(cols = neg:pos, names_to = 'polarity', values_to = 'value') %>%
     filter(polarity=='pos') %>%
@@ -114,7 +119,7 @@ df3 %>%
     )
 
 # Histogram: Negative
-df3 %>%
+neg_histo <- df3 %>%
     select(row:pos) %>%
     pivot_longer(cols = neg:pos, names_to = 'polarity', values_to = 'value') %>%
     filter(polarity=='neg') %>%
@@ -132,9 +137,85 @@ df3 %>%
 
 
 # Histogram: Both Overlap
-df3 %>%
+both_histo <- df3 %>%
     select(row:pos) %>%
     pivot_longer(cols = neg:pos, names_to = 'polarity', values_to = 'value') %>%
+    filter(value > 0) %>%
+    filter(polarity != 'neu') %>%
+    ggplot(aes(x=value, fill=polarity)) +
+    geom_histogram(color="#e9ecef", alpha=0.7, position = 'identity') +
+    scale_fill_manual(values=c("#404080","#69b3a2")) +
+    theme_minimal() +
+    labs(
+        title = "Distribution of Polarity Scores",
+        subtitle = "Facebook Posts 2006 - 2020",
+        caption = "Data & Visualization: @paulapivat",
+        x = "Polarity Score",
+        y = "Number of Sentences",
+        fill = "Polarity"
+    )
+
+# Patchwork ----
+
+library(patchwork)
+both_histo1/(pos_histo1 + neg_histo1)
+
+
+# Histogram: Positive
+pos_histo1 <- df3 %>%
+    select(row:pos) %>%
+    pivot_longer(cols = neg:pos, names_to = 'polarity', values_to = 'value') %>%
+    filter(polarity=='pos') %>%
+    filter(value > 0) %>%
+    ggplot(aes(x = value)) +
+    geom_histogram(fill="#69b3a2") +
+    theme_minimal() +
+    theme(axis.title.x = element_text(vjust = -1, hjust = 0.5)) +
+    labs(
+        title = "Positivity",
+        y = "Number of Sentences",
+        x = ""
+    )
+
+# Histogram: Negative
+neg_histo1 <- df3 %>%
+    select(row:pos) %>%
+    pivot_longer(cols = neg:pos, names_to = 'polarity', values_to = 'value') %>%
+    filter(polarity=='neg') %>%
+    filter(value > 0) %>%
+    ggplot(aes(x = value)) +
+    geom_histogram(fill="#404080") +
+    theme_minimal() +
+    theme(plot.title = element_text(hjust = 1))+
+    labs(
+        title = "Negativity",
+        caption = "Data & Visualization: @paulapivat",
+        y = "",
+        x = ""
+    )
+
+
+# Histogram: Both Overlap
+both_histo1 <- df3 %>%
+    select(row:pos) %>%
+    pivot_longer(cols = neg:pos, names_to = 'polarity', values_to = 'value') %>%
+    filter(value > 0) %>%
+    filter(polarity != 'neu') %>%
+    ggplot(aes(x=value, fill=polarity)) +
+    geom_histogram(color="#e9ecef", alpha=0.7, position = 'identity') +
+    scale_fill_manual(values=c("#404080","#69b3a2")) +
+    theme_minimal() +
+    labs(
+        title = "Polarity Scores Distribution",
+        subtitle = "Facebook Posts 2006 - 2020",
+        x = "",
+        y = "Number of Sentences",
+        fill = "Polarity"
+    )
+
+
+
+
 
 
 
