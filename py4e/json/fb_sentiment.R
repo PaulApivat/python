@@ -26,7 +26,7 @@ df3 <- df2 %>%
 
 # Sentiment Line ----
 
-df3 %>%
+p1 <- df3 %>%
     select(row:pos) %>%
     pivot_longer(cols = neg:pos, names_to = 'polarity', values_to = 'value') %>%
     #group_by(row) %>%
@@ -214,11 +214,54 @@ both_histo1 <- df3 %>%
     )
 
 
-
-
-
-
-
-
 sum(df3$neg)
 sum(df3$pos)
+
+# Separate Data ----
+
+# load data
+data3 <- read_csv("sent_sentiment_3.csv")       # 3241
+data4 <- read_csv('sent_sentiment_4.csv')       # 12964
+
+# create new column of index numbers
+data3 <- data3 %>%
+    mutate(row = row_number())
+
+
+# long-to-wide for data4
+# note: create a unique identifier for each label then use pivot_wider
+
+data4 <- data4 %>%
+    group_by(label) %>%
+    mutate(row = row_number()) %>%
+    pivot_wider(names_from = label, values_from = values) %>%
+    left_join(data3, by = 'row') %>%
+    select(row, sentence, neg:compound, numbers) 
+
+## data4 is the one to work off ----
+
+## 
+
+p2 <- data4 %>%
+    select(row:pos) %>%
+    pivot_longer(cols = neg:pos, names_to = 'polarity', values_to = 'value') %>%
+    #group_by(row) %>%
+    ggplot(aes(x = row, y = value, fill=polarity)) +
+    geom_area() +
+    theme_minimal() +
+    scale_fill_manual(values = c("#ef8a62", "black", "#67a9cf")) +     # "#f7f7f7"
+    theme(
+        legend.position = 'bottom'
+    ) +
+    labs(
+        x = "Posts",
+        y = "Value",
+        fill = "Polarity",
+        title = "Facebook Post Polarity Index: 2006 - 2020",
+        subtitle = "Non-Normalized Data",
+        caption = "Data & Visualization: @paulapivat"
+    )
+
+# patch work
+p1 / p2
+
