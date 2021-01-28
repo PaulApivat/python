@@ -274,3 +274,16 @@ for sent in flat_sent_token:
 # NOTE: slightly longer length when sentence are *not* normalized, stem or lemmatized
 # len(sentiment3)  3241
 # len(sentiment4)  12964
+
+# sentiment3
+cols3 = ['sentence', 'numbers']
+result3 = pd.DataFrame(sentiment3, columns=cols3)
+print("First five rows of results3: ", result3.head())
+
+# sentiment4
+cols4 = ['label', 'values']
+result4 = pd.DataFrame(sentiment4, columns=cols4)
+print("First five rows of results4: ", result4.head())
+
+# result3.to_csv('sent_sentiment_3.csv', index=False)
+# result4.to_csv('sent_sentiment_4.csv', index=False)
