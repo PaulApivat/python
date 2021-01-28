@@ -175,6 +175,9 @@ stems, lemmas = stem_and_lemmatize(words)
 print('Length of Word Stemmed: \n', len(stems))
 print('\nLength of Lemmatized Word:\n', len(lemmas))
 
+stems_i, lemmas_i = stem_and_lemmatize(sents)
+print('Length of Sentence Stemmed: \n', len(stems_i))
+print('\nLength of Lemmatized Sentences:\n', len(lemmas_i))
 
 ##### Part of Speech Tagging #####
 # Note: use flat_word_token
@@ -200,6 +203,9 @@ fdist_word.plot(50)
 # Find frequency of sentence
 fdist_sent = FreqDist(sents)
 fdist_sent.most_common(10)   # TELLING
+
+# Plot Frequency Graph (sentence)
+fdist_sent.plot(10)
 
 # Frequency of (Word) STEMS
 fdist_stem_word = FreqDist(stems)
@@ -252,5 +258,19 @@ print("First five rows of results2: ", result2.head())
 # len(sentiment2) 12776
 # 3194 * 4 = 12776
 
-# result.to_csv('sent_sentiment.csv')
+# result.to_csv('sent_sentiment.csv', index=False)
 # result2.to_csv('sent_sentiment_2.csv', index=False)
+
+###### Is Normalization Necessary When Using VADER ######
+sentiment3 = []
+sentiment4 = []
+
+for sent in flat_sent_token:
+    sent_scores = sid.polarity_scores(sent)
+    for x, y in sent_scores.items():
+        sentiment4.append((x, y))
+    sentiment3.append((sent, sent_scores))
+
+# NOTE: slightly longer length when sentence are *not* normalized, stem or lemmatized
+# len(sentiment3)  3241
+# len(sentiment4)  12964
