@@ -95,10 +95,10 @@ df %>%
     slice(1:38) %>% 
     # change character to numeric
     mutate(attack_hourly_cost = as.numeric(attack_hourly_cost)) %>%
-    ggplot(aes(x=market_cap, y=attack_hourly_cost)) +
+    ggplot(aes(x=market_cap, y=attack_hourly_cost, size = market_cap)) +
     geom_point() +
-    scale_y_log10() +
-    scale_x_log10() +
+    scale_y_log10(label= scales::comma) +
+    scale_x_log10(label= scales::comma) +
     geom_smooth(method = "lm", se = FALSE)
 
 
