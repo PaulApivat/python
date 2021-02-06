@@ -60,7 +60,9 @@ df %>%
 
 
 # Remove coins with no marketcap
-# segment by <M, M or B
+# log10 transformation instead of segment by <M, M or B
+
+# market_cap
 df %>%
     slice(1:38) %>% 
     ggplot(aes(x=reorder(symbol, market_cap), y=market_cap, color = symbol)) +
@@ -72,6 +74,31 @@ df %>%
     ) +
     scale_y_log10(labels = scales::comma)
     
+# attack_hourly_cost
+df %>%
+    slice(1:38) %>% 
+    # change character to numeric
+    mutate(attack_hourly_cost = as.numeric(attack_hourly_cost)) %>%
+    ggplot(aes(x=reorder(symbol, attack_hourly_cost), y=attack_hourly_cost, color = symbol)) +
+    geom_point(aes(size = market_cap)) +
+    geom_segment(aes(xend = symbol, yend = 0, color = symbol), size = 1) +
+    theme(
+        legend.position = 'none',
+        axis.text.x = element_text(angle = 45, hjust = 1)
+    ) +
+    scale_y_continuous(labels = scales::number_format(accuracy = 0.01))+
+    scale_y_log10(labels = scales::comma)
 
+
+# scatter_plot w/ log10 transformation
+df %>%
+    slice(1:38) %>% 
+    # change character to numeric
+    mutate(attack_hourly_cost = as.numeric(attack_hourly_cost)) %>%
+    ggplot(aes(x=market_cap, y=attack_hourly_cost)) +
+    geom_point() +
+    scale_y_log10() +
+    scale_x_log10() +
+    geom_smooth(method = "lm", se = FALSE)
 
 
