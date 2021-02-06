@@ -91,14 +91,43 @@ df %>%
 
 
 # scatter_plot w/ log10 transformation
+library(ggrepel)
+
+df1 <- df1 %>%
+    mutate(
+        annotation = ifelse(market_cap > 60000000000, "yes", "no")
+    )
+
+
 df %>%
     slice(1:38) %>% 
     # change character to numeric
     mutate(attack_hourly_cost = as.numeric(attack_hourly_cost)) %>%
-    ggplot(aes(x=market_cap, y=attack_hourly_cost, size = market_cap)) +
-    geom_point() +
-    scale_y_log10(label= scales::comma) +
-    scale_x_log10(label= scales::comma) +
-    geom_smooth(method = "lm", se = FALSE)
+    ggplot(aes(x=market_cap, y=attack_hourly_cost)) +
+    geom_point(aes(size = log10(market_cap), color = symbol), alpha = 0.8) +
+    scale_y_log10(label= scales::dollar) +
+    scale_x_log10(label= scales::dollar) +
+    theme(
+        legend.position = 'none'
+    ) +
+    geom_text_repel(data = df %>% filter(symbol =="BTC" & symbol=="ETH"), 
+                    aes(label=name), size = 4)
+    #geom_smooth(method = "lm", se = FALSE)
+
+
+df1 %>%
+    slice(1:38) %>% 
+    filter(attack_hourly_cost != "?") %>% 
+    # change character to numeric
+    mutate(
+        attack_hourly_cost = as.numeric(attack_hourly_cost)
+    ) %>% 
+    ggplot(aes(x=market_cap, y=attack_hourly_cost)) +
+    geom_point(aes(size = log10(market_cap), color = symbol), alpha = 0.8) +
+    scale_y_log10(label= scales::dollar) +
+    scale_x_log10(label= scales::dollar) +
+    theme(
+        legend.position = 'none'
+    ) 
 
 
