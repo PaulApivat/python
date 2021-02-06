@@ -123,11 +123,27 @@ df1 %>%
         attack_hourly_cost = as.numeric(attack_hourly_cost)
     ) %>% 
     ggplot(aes(x=market_cap, y=attack_hourly_cost)) +
-    geom_point(aes(size = log10(market_cap), color = symbol), alpha = 0.8) +
+    geom_point(aes(size = log10(market_cap)), color = "white", alpha = 0.8) +
     scale_y_log10(label= scales::dollar) +
     scale_x_log10(label= scales::dollar) +
+    theme_minimal() +
     theme(
-        legend.position = 'none'
-    ) 
+        legend.position = 'none',
+        panel.background = element_rect(fill = "dodger blue"),
+        panel.grid.major = element_blank(),
+        panel.grid.minor = element_blank(),
+        plot.background = element_rect(fill = "dodger blue"),
+        plot.title = element_text(colour = "white", face = "bold", size = 30, 
+                                  margin = margin(10,0,30,0)),
+        axis.title = element_text(colour = "white", face = "bold"),
+        axis.title.x = element_text(margin = margin(30,0,10,0)),
+        axis.text = element_text(colour = "white", face = "bold"),
+        axis.title.y = element_text(margin = margin(0,20,0,30), angle = 0)
+    ) +
+    labs(
+        x = "Market Capitalization",
+        y = "Attack\nHourly\nCost",
+        title = "The More a Network is Worth,\n the Harder it is to Attack."
+    )
 
 
