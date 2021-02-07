@@ -135,6 +135,7 @@ df1 %>%
         plot.background = element_rect(fill = "dodger blue"),
         plot.title = element_text(colour = "white", face = "bold", size = 30, 
                                   margin = margin(10,0,30,0)),
+        plot.caption = element_text(color = "white"),
         axis.title = element_text(colour = "white", face = "bold"),
         axis.title.x = element_text(margin = margin(30,0,10,0)),
         axis.text = element_text(colour = "white", face = "bold"),
@@ -143,7 +144,8 @@ df1 %>%
     labs(
         x = "Market Capitalization",
         y = "Attack\nHourly\nCost",
-        title = "The More a Network is Worth,\n the Harder it is to Attack."
+        title = "The More a Crypto Network is Worth,\n the Harder it is to Attack.",
+        caption = "Data: www.crypto51.app | Graphics: @paulapivat"
     )
 
 
