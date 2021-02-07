@@ -146,6 +146,27 @@ df1 %>%
         y = "Attack\nHourly\nCost",
         title = "The More a Crypto Network is Worth,\n the Harder it is to Attack.",
         caption = "Data: www.crypto51.app | Graphics: @paulapivat"
-    )
+    ) +
+    # annotate instead of geom_text
+    annotate("text", x = 205174310335, y = 800000, label = "Bitcoin", color = "white") +
+    annotate("text", x = 30762751140, y = 418437, label = "Ethereum", color = "white")
+
+
+### Find Correlation between market_cap and attack_hourly_cost
+df2 <- df1
+
+df2$attack_hourly_cost <- as.numeric(df2$attack_hourly_cost)
+
+df2 <- df2 %>%
+    slice(1:38) %>% 
+    filter(!is.na(attack_hourly_cost))
+
+# Correlation between Market Cap and Attack Cost is 0.94
+cor(df2$market_cap, df2$attack_hourly_cost)
+
+# Correlation between Market Cap and Rentable Capacity is 0.47
+cor(df2$market_cap, df2$rentable_capacity)
+
+cor(df2$market_cap, df2$network_vs_rentable_ratio)
 
 
