@@ -1,7 +1,7 @@
 import urllib.request
 import urllib.parse
 import urllib.error
-import oauth2 as oauth
+import oauth
 import hidden
 
 # https://apps.twitter.com/
