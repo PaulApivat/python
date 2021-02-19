@@ -21,6 +21,20 @@ html = urllib.request.urlopen(url, context=ctx).read()
 soup = BeautifulSoup(html, 'html.parser')
 soup.title.string
 
-
+# This is only the first table
 right_table = soup.find('table', {"class": "wikitable sortable"})
 print(right_table)
+
+# Too many non-Thai cuisines
+right_div = soup.find('div', {"class": "mw-content-ltr"})
+
+right_div2 = soup.find('div', {"class": "mw-parser-output"})
+
+
+# Find ALL Tables
+all_table = soup.findAll('table', {"class": "wikitable sortable"})
+
+# First td of last table
+all_table[15].find('td')
+# Find all td of last table
+all_table[15].findAll('td')
