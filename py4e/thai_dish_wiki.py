@@ -39,6 +39,10 @@ all_table[15].find('td')
 # Find all td of last table
 all_table[15].findAll('td')
 
+len(all_table[15].findAll('td'))  # 102
+
+all_table[15].findAll('td')[0]  # <td>Cha dam yen </td>
+
 # Find all table headers in the Last table
 all_table[15].findAll('th')
 
