@@ -31,10 +31,17 @@ right_div = soup.find('div', {"class": "mw-content-ltr"})
 right_div2 = soup.find('div', {"class": "mw-parser-output"})
 
 
-# Find ALL Tables
+# Find ALL Tables - there are 16 tables
 all_table = soup.findAll('table', {"class": "wikitable sortable"})
 
 # First td of last table
 all_table[15].find('td')
 # Find all td of last table
 all_table[15].findAll('td')
+
+# Find all table headers in the Last table
+all_table[15].findAll('th')
+
+# grabbing text from Beautiful Soup
+for item in all_table[15].findAll('th'):
+    print(item.text, item.next_sibling)
