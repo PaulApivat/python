@@ -49,3 +49,42 @@ all_table[15].findAll('th')
 # grabbing text from Beautiful Soup
 for item in all_table[15].findAll('th'):
     print(item.text, item.next_sibling)
+
+# saving all table header in a list
+header = [item.text.rstrip() for item in all_table[15].findAll('th')]
+
+# grab all cells
+for item in all_table[15].findAll('td'):
+    print(item.text, item.next_sibling)
+
+table_body = [item.text.rstrip() for item in all_table[15].findAll('td')]
+
+# Instead of grabbing all individual cells, grab all rows
+all_table[15].findAll('tr')
+
+c1 = []
+c2 = []
+c3 = []
+c4 = []
+c5 = []
+c6 = []
+
+# loop through to create six columns
+for row in all_table[15].findAll('tr'):
+    cells = row.findAll('td')
+    if len(cells) == 6:
+        c1.append(cells[0].find(text=True))
+        c2.append(cells[1].find(text=True))
+        c3.append(cells[2].find(text=True))
+        c4.append(cells[3].find(text=True))
+        c5.append(cells[4].find(text=True))
+        c6.append(cells[5].find(text=True))
+
+
+# append dictionary with corresponding data list
+d['Thai name'] = c1
+d['Thai script'] = c2
+d['English name'] = c3
+d['Image'] = c4
+d['Region'] = c5
+d['Description'] = c6
