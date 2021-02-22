@@ -232,7 +232,7 @@ e_d_df_table.head(5)
 
 #
 
-# Saladf (Shared Dishes)
+# Salad (Shared Dishes)
 f1 = []
 f2 = []
 f3 = []
@@ -267,3 +267,41 @@ f_d_df_table = pd.DataFrame(f_d)
 
 # print top 5 records of first table
 f_d_df_table.head(5)
+
+#
+
+# Fried and Stir-Fried Dishes (Shared Dishes)
+g1 = []
+g2 = []
+g3 = []
+g4 = []
+g5 = []
+g6 = []
+
+# all_tables[1] - loop through to create six columns
+for row in all_tables[6].findAll('tr'):
+    cells = row.findAll('td')
+    if len(cells) == 6:
+        g1.append(cells[0].find(text=True))
+        g2.append(cells[1].find(text=True))
+        g3.append(cells[2].find(text=True))
+        g4.append(cells[3].find(text=True))
+        g5.append(cells[4].find(text=True))
+        g6.append(cells[5].find(text=True).rstrip())  # ignore italics
+
+# create dictionary
+g_d = dict([(x, 0) for x in header])
+
+# append dictionary with corresponding data list
+g_d['Thai name'] = g1
+g_d['Thai script'] = g2
+g_d['English name'] = g3
+g_d['Image'] = g4
+g_d['Region'] = g5
+g_d['Description'] = g6
+
+# turn dict into dataframe
+g_d_df_table = pd.DataFrame(g_d)
+
+# print top 5 records of first table
+g_d_df_table.head(5)
