@@ -457,3 +457,41 @@ k_d_df_table = pd.DataFrame(k_d)
 
 # print top 5 records of first table
 k_d_df_table.head(5)
+
+#
+
+# Dipping Sauces and Pastes (Shared Dishes)
+l1 = []
+l2 = []
+l3 = []
+l4 = []
+l5 = []
+l6 = []
+
+# all_tables[1] - loop through to create six columns
+for row in all_tables[11].findAll('tr'):
+    cells = row.findAll('td')
+    if len(cells) == 6:
+        l1.append(cells[0].find(text=True))
+        l2.append(cells[1].find(text=True))
+        l3.append(cells[2].find(text=True))
+        l4.append(cells[3].find(text=True))
+        l5.append(cells[4].find(text=True))
+        l6.append(cells[5].find(text=True).rstrip())  # ignore italics
+
+# create dictionary
+l_d = dict([(x, 0) for x in header])
+
+# append dictionary with corresponding data list
+l_d['Thai name'] = l1
+l_d['Thai script'] = l2
+l_d['English name'] = l3
+l_d['Image'] = l4
+l_d['Region'] = l5
+l_d['Description'] = l6
+
+# turn dict into dataframe
+l_d_df_table = pd.DataFrame(l_d)
+
+# print top 5 records of first table
+l_d_df_table.head(5)
