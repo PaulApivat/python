@@ -419,3 +419,41 @@ j_d_df_table = pd.DataFrame(j_d)
 
 # print top 5 records of first table
 j_d_df_table.head(5)
+
+#
+
+# Stewed (Shared Dishes)
+k1 = []
+k2 = []
+k3 = []
+k4 = []
+k5 = []
+k6 = []
+
+# all_tables[1] - loop through to create six columns
+for row in all_tables[10].findAll('tr'):
+    cells = row.findAll('td')
+    if len(cells) == 6:
+        k1.append(cells[0].find(text=True))
+        k2.append(cells[1].find(text=True))
+        k3.append(cells[2].find(text=True))
+        k4.append(cells[3].find(text=True))
+        k5.append(cells[4].find(text=True))
+        k6.append(cells[5].find(text=True).rstrip())  # ignore italics
+
+# create dictionary
+k_d = dict([(x, 0) for x in header])
+
+# append dictionary with corresponding data list
+k_d['Thai name'] = k1
+k_d['Thai script'] = k2
+k_d['English name'] = k3
+k_d['Image'] = k4
+k_d['Region'] = k5
+k_d['Description'] = k6
+
+# turn dict into dataframe
+k_d_df_table = pd.DataFrame(k_d)
+
+# print top 5 records of first table
+k_d_df_table.head(5)
