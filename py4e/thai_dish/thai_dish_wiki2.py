@@ -647,3 +647,33 @@ p_d_df_table = pd.DataFrame(p_d)
 
 # print top 5 records of first table
 p_d_df_table.head(5)
+
+
+# join data frame with same columns in pandas
+# use ignore_index=True parameter as alternative
+thai_dishes = pd.concat([a_d_df_table,
+                         b_d_df_table,
+                         c_d_df_table,
+                         d_d_df_table,
+                         e_d_df_table,
+                         f_d_df_table,
+                         g_d_df_table,
+                         h_d_df_table,
+                         i_d_df_table,
+                         j_d_df_table,
+                         k_d_df_table,
+                         l_d_df_table,
+                         m_d_df_table,
+                         n_d_df_table,
+                         o_d_df_table,
+                         p_d_df_table])
+
+# Explore data frame with pandas
+thai_dishes.columns
+thai_dishes.dtypes
+thai_dishes.head(3)
+thai_dishes.tail(3)
+# count frequency of variables in a column
+thai_dishes['Thai name'].value_counts()
+# count missing values in a column
+pd.isnull(thai_dishes['Thai name'].value_counts())
