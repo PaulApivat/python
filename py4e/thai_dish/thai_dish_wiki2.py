@@ -115,3 +115,41 @@ b_d_df_table = pd.DataFrame(b_d)
 
 # print top 5 records of first table
 b_d_df_table.head(5)
+
+#
+
+# Miscellaneous (individual)
+c1 = []
+c2 = []
+c3 = []
+c4 = []
+c5 = []
+c6 = []
+
+# all_tables[1] - loop through to create six columns
+for row in all_tables[2].findAll('tr'):
+    cells = row.findAll('td')
+    if len(cells) == 6:
+        c1.append(cells[0].find(text=True))
+        c2.append(cells[1].find(text=True))
+        c3.append(cells[2].find(text=True))
+        c4.append(cells[3].find(text=True))
+        c5.append(cells[4].find(text=True))
+        c6.append(cells[5].find(text=True).rstrip())  # ignore italics
+
+# create dictionary
+c_d = dict([(x, 0) for x in header])
+
+# append dictionary with corresponding data list
+c_d['Thai name'] = c1
+c_d['Thai script'] = c2
+c_d['English name'] = c3
+c_d['Image'] = c4
+c_d['Region'] = c5
+c_d['Description'] = c6
+
+# turn dict into dataframe
+c_d_df_table = pd.DataFrame(c_d)
+
+# print top 5 records of first table
+c_d_df_table.head(5)
