@@ -40,6 +40,15 @@ df$Image
 df$Region
 df$Description
 
+# Count by individual words in Thai_name column
+df %>%
+    separate_rows(Thai_name, sep = ' ') %>%
+    group_by(Thai_name = tolower(Thai_name)) %>%
+    group_by(Thai_name) %>%
+    tally(sort = TRUE)
+    
+
+
 ## NOTE ##
 ## Web-Scrapping Process need to get text from links
 
