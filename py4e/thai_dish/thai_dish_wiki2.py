@@ -343,3 +343,79 @@ h_d_df_table = pd.DataFrame(h_d)
 
 # print top 5 records of first table
 h_d_df_table.head(5)
+
+#
+
+# Grilled Dishes (Shared Dishes)
+i1 = []
+i2 = []
+i3 = []
+i4 = []
+i5 = []
+i6 = []
+
+# all_tables[1] - loop through to create six columns
+for row in all_tables[8].findAll('tr'):
+    cells = row.findAll('td')
+    if len(cells) == 6:
+        i1.append(cells[0].find(text=True))
+        i2.append(cells[1].find(text=True))
+        i3.append(cells[2].find(text=True))
+        i4.append(cells[3].find(text=True))
+        i5.append(cells[4].find(text=True))
+        i6.append(cells[5].find(text=True).rstrip())  # ignore italics
+
+# create dictionary
+i_d = dict([(x, 0) for x in header])
+
+# append dictionary with corresponding data list
+i_d['Thai name'] = i1
+i_d['Thai script'] = i2
+i_d['English name'] = i3
+i_d['Image'] = i4
+i_d['Region'] = i5
+i_d['Description'] = i6
+
+# turn dict into dataframe
+i_d_df_table = pd.DataFrame(i_d)
+
+# print top 5 records of first table
+i_d_df_table.head(5)
+
+#
+
+# Steamed or Blanched Dishes (Shared Dishes)
+j1 = []
+j2 = []
+j3 = []
+j4 = []
+j5 = []
+j6 = []
+
+# all_tables[1] - loop through to create six columns
+for row in all_tables[9].findAll('tr'):
+    cells = row.findAll('td')
+    if len(cells) == 6:
+        j1.append(cells[0].find(text=True))
+        j2.append(cells[1].find(text=True))
+        j3.append(cells[2].find(text=True))
+        j4.append(cells[3].find(text=True))
+        j5.append(cells[4].find(text=True))
+        j6.append(cells[5].find(text=True).rstrip())  # ignore italics
+
+# create dictionary
+j_d = dict([(x, 0) for x in header])
+
+# append dictionary with corresponding data list
+j_d['Thai name'] = j1
+j_d['Thai script'] = j2
+j_d['English name'] = j3
+j_d['Image'] = j4
+j_d['Region'] = j5
+j_d['Description'] = j6
+
+# turn dict into dataframe
+j_d_df_table = pd.DataFrame(j_d)
+
+# print top 5 records of first table
+j_d_df_table.head(5)
