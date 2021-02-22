@@ -571,3 +571,41 @@ n_d_df_table = pd.DataFrame(n_d)
 
 # print top 5 records of first table
 n_d_df_table.head(5)
+
+#
+
+# Sweet snacks and desserts
+o1 = []
+o2 = []
+o3 = []
+o4 = []
+o5 = []
+o6 = []
+
+# all_tables[1] - loop through to create six columns
+for row in all_tables[14].findAll('tr'):
+    cells = row.findAll('td')
+    if len(cells) == 6:
+        o1.append(cells[0].find(text=True))
+        o2.append(cells[1].find(text=True))
+        o3.append(cells[2].find(text=True))
+        o4.append(cells[3].find(text=True))
+        o5.append(cells[4].find(text=True))
+        o6.append(cells[5].find(text=True).rstrip())  # ignore italics
+
+# create dictionary
+o_d = dict([(x, 0) for x in header])
+
+# append dictionary with corresponding data list
+o_d['Thai name'] = o1
+o_d['Thai script'] = o2
+o_d['English name'] = o3
+o_d['Image'] = o4
+o_d['Region'] = o5
+o_d['Description'] = o6
+
+# turn dict into dataframe
+o_d_df_table = pd.DataFrame(o_d)
+
+# print top 5 records of first table
+o_d_df_table.head(5)
