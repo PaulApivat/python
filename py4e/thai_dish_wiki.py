@@ -5,6 +5,7 @@ import urllib.request
 import urllib.parse
 import urllib.error
 import ssl
+import pandas as pd
 
 
 url = "https://en.wikipedia.org/wiki/List_of_Thai_dishes"
@@ -78,8 +79,11 @@ for row in all_table[15].findAll('tr'):
         c3.append(cells[2].find(text=True))
         c4.append(cells[3].find(text=True))
         c5.append(cells[4].find(text=True))
-        c6.append(cells[5].find(text=True))
+        c6.append(cells[5].find(text=True).rstrip())  # ignore italics
 
+
+# create dictionary
+d = dict([(x, 0) for x in header])
 
 # append dictionary with corresponding data list
 d['Thai name'] = c1
@@ -88,3 +92,6 @@ d['English name'] = c3
 d['Image'] = c4
 d['Region'] = c5
 d['Description'] = c6
+
+# turn dict into dataframe
+df_table = pd.DataFrame(d)
