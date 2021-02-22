@@ -677,3 +677,7 @@ thai_dishes.tail(3)
 thai_dishes['Thai name'].value_counts()
 # count missing values in a column
 pd.isnull(thai_dishes['Thai name'].value_counts())
+
+
+# Write data frame to csv
+# thai_dishes.to_csv("thai_dishes.csv")
