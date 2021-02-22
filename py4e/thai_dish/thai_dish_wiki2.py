@@ -305,3 +305,41 @@ g_d_df_table = pd.DataFrame(g_d)
 
 # print top 5 records of first table
 g_d_df_table.head(5)
+
+#
+
+# Deep-Fried Dishes (Shared Dishes)
+h1 = []
+h2 = []
+h3 = []
+h4 = []
+h5 = []
+h6 = []
+
+# all_tables[1] - loop through to create six columns
+for row in all_tables[7].findAll('tr'):
+    cells = row.findAll('td')
+    if len(cells) == 6:
+        h1.append(cells[0].find(text=True))
+        h2.append(cells[1].find(text=True))
+        h3.append(cells[2].find(text=True))
+        h4.append(cells[3].find(text=True))
+        h5.append(cells[4].find(text=True))
+        h6.append(cells[5].find(text=True).rstrip())  # ignore italics
+
+# create dictionary
+h_d = dict([(x, 0) for x in header])
+
+# append dictionary with corresponding data list
+h_d['Thai name'] = h1
+h_d['Thai script'] = h2
+h_d['English name'] = h3
+h_d['Image'] = h4
+h_d['Region'] = h5
+h_d['Description'] = h6
+
+# turn dict into dataframe
+h_d_df_table = pd.DataFrame(h_d)
+
+# print top 5 records of first table
+h_d_df_table.head(5)
