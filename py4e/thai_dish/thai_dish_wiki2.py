@@ -153,3 +153,41 @@ c_d_df_table = pd.DataFrame(c_d)
 
 # print top 5 records of first table
 c_d_df_table.head(5)
+
+#
+
+# Curries (Shared Dishes)
+d1 = []
+d2 = []
+d3 = []
+d4 = []
+d5 = []
+d6 = []
+
+# all_tables[1] - loop through to create six columns
+for row in all_tables[3].findAll('tr'):
+    cells = row.findAll('td')
+    if len(cells) == 6:
+        d1.append(cells[0].find(text=True))
+        d2.append(cells[1].find(text=True))
+        d3.append(cells[2].find(text=True))
+        d4.append(cells[3].find(text=True))
+        d5.append(cells[4].find(text=True))
+        d6.append(cells[5].find(text=True).rstrip())  # ignore italics
+
+# create dictionary
+d_d = dict([(x, 0) for x in header])
+
+# append dictionary with corresponding data list
+d_d['Thai name'] = d1
+d_d['Thai script'] = d2
+d_d['English name'] = d3
+d_d['Image'] = d4
+d_d['Region'] = d5
+d_d['Description'] = d6
+
+# turn dict into dataframe
+d_d_df_table = pd.DataFrame(d_d)
+
+# print top 5 records of first table
+d_d_df_table.head(5)
