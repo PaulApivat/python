@@ -229,3 +229,41 @@ e_d_df_table = pd.DataFrame(e_d)
 
 # print top 5 records of first table
 e_d_df_table.head(5)
+
+#
+
+# Saladf (Shared Dishes)
+f1 = []
+f2 = []
+f3 = []
+f4 = []
+f5 = []
+f6 = []
+
+# all_tables[1] - loop through to create six columns
+for row in all_tables[5].findAll('tr'):
+    cells = row.findAll('td')
+    if len(cells) == 6:
+        f1.append(cells[0].find(text=True))
+        f2.append(cells[1].find(text=True))
+        f3.append(cells[2].find(text=True))
+        f4.append(cells[3].find(text=True))
+        f5.append(cells[4].find(text=True))
+        f6.append(cells[5].find(text=True).rstrip())  # ignore italics
+
+# create dictionary
+f_d = dict([(x, 0) for x in header])
+
+# append dictionary with corresponding data list
+f_d['Thai name'] = f1
+f_d['Thai script'] = f2
+f_d['English name'] = f3
+f_d['Image'] = f4
+f_d['Region'] = f5
+f_d['Description'] = f6
+
+# turn dict into dataframe
+f_d_df_table = pd.DataFrame(f_d)
+
+# print top 5 records of first table
+f_d_df_table.head(5)
