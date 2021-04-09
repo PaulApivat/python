@@ -11,10 +11,16 @@
 
 # use .split() to split string into parts
 
+# resources:
+# https://stackoverflow.com/questions/16335771/shorter-way-to-check-if-a-string-is-not-isdigit
+# https://stackoverflow.com/questions/21388541/how-do-you-check-in-python-whether-a-string-contains-only-numbers/21388567
+
+
 # problematic list
 prob_list = ["32 + 698", "3801 - 2", "45 + 43", "123 + 49", "1 + 3"]
 prob_list_2 = ["32 + 698", "3801 - 2", "45 + 43", "1 x 3"]
 prob_list_3 = ["32 + 698", "3801 - 2", "45 + 43", "1 / 3"]
+problems = ["32 / 698", "3801 - 2", "45 + 4?3", "123 + 49", "1 + 345673"]
 
 
 def arithmetic_arranger(problems):
@@ -31,8 +37,10 @@ def arithmetic_arranger(problems):
         matches = ['x', '/']
         if any(x in split_prob for x in matches):
             print("Error: Operator must be '+' or '-'.")
+        # short way to check if string is not isdigit()
         elif(not split_prob[0].isdigit() or not split_prob[2].isdigit()):
             print("Error: Numbers must only contain digits.")
+        # prevent TypeError: '<' not supported between instances of 'str' and 'int'
         elif(int(split_prob[0]) > 4 or int(split_prob[2]) > 4):
             print("Error: Numbers cannot be more than four digits.")
         else:
