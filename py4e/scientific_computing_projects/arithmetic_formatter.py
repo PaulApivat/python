@@ -20,14 +20,17 @@ prob_list_3 = ["32 + 698", "3801 - 2", "45 + 43", "1 / 3"]
 def arithmetic_arranger(problems):
 
     if(len(problems) > 4):
-        return "Error: Too many problems."
+        print("Error: Too many problems.")
 
     """check for inappropriate operators: x or / """
+    """check numbers only contain digits"""
 
     for item in problems:
         split_prob = item.split()
         matches = ['x', '/']
         if any(x in split_prob for x in matches):
             print("Error: Operator must be '+' or '-'.")
+        elif(not split_prob[0].isdigit() or not split_prob[2].isdigit()):
+            print("Error: Numbers must only contain digits.")
 
     return arranged_problems
