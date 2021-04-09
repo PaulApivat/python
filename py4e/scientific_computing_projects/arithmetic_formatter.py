@@ -24,6 +24,7 @@ def arithmetic_arranger(problems):
 
     """check for inappropriate operators: x or / """
     """check numbers only contain digits"""
+    """check if numbers more than four digits"""
 
     for item in problems:
         split_prob = item.split()
@@ -32,5 +33,13 @@ def arithmetic_arranger(problems):
             print("Error: Operator must be '+' or '-'.")
         elif(not split_prob[0].isdigit() or not split_prob[2].isdigit()):
             print("Error: Numbers must only contain digits.")
+        elif(int(split_prob[0]) > 4 or int(split_prob[2]) > 4):
+            print("Error: Numbers cannot be more than four digits.")
+        else:
+            continue
+
+    print("Continue. Fine.")
+
+    arranged_problems = ["Initial check passed."]
 
     return arranged_problems
