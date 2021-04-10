@@ -51,3 +51,20 @@ def arithmetic_arranger(problems):
     arranged_problems = ["Initial check passed."]
 
     return arranged_problems
+
+# Re-Formatting Math Problems
+
+
+lst = ["32 + 698", "3801 - 2", "45 + 43", "123 + 49"]
+
+for s in lst:
+    split_s = s.split()
+    top = split_s[0]
+    bottom = '\n'+split_s[1] + ' '+split_s[2]
+    len_top = len(top)
+    len_bottom = len(bottom)
+    if(len_top > len_bottom):
+        line = '_'*len_top
+    else:
+        line = '_'*len_bottom
+    print(top, bottom, "len_bottom:", len_bottom, "len_top:", len_top, line)
