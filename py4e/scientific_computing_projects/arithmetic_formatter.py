@@ -67,4 +67,19 @@ for s in lst:
         line = '_'*len_top
     else:
         line = '_'*len_bottom
-    print(top, bottom, "len_bottom:", len_bottom, "len_top:", len_top, line)
+    print(top, bottom, line)
+
+
+# Pass Two
+
+for s in lst:
+    split_s = s.split()
+    top = split_s[0]
+    bottom = split_s[2]
+    operator = split_s[1]
+    if(len(top) > len(bottom)):
+        line = "-" * (len(top) + 2)
+    else:
+        line = "-" * (len(bottom) + 2)
+    print(f"{top:>{len(line)}}", '\n', operator,
+          bottom, '\n', line, '\n', len(line))
