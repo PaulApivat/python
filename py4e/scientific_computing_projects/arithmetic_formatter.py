@@ -70,8 +70,7 @@ for s in lst:
     print(top, bottom, line)
 
 
-# Pass Two
-
+# v2.0
 # wrap {len(line)} inside f-string
 
 for s in lst:
@@ -85,3 +84,33 @@ for s in lst:
         line = "-" * (len(bottom) + 2)
     print(f"{top:>{len(line) + 1 }}", '\n', operator,
           f"{bottom:>{len(line) - 2 }}", '\n', line, '\n')
+
+# v2.1
+for s in lst:
+    split_s = s.split()
+    top = split_s[0]
+    bottom = split_s[2]
+    operator = split_s[1]
+    if(len(top) > len(bottom)):
+        line = "-" * (len(top) + 2)
+    else:
+        line = "-" * (len(bottom) + 2)
+    output = [f"{top:>{len(line) + 1 }}", '\n', operator,
+              f"{bottom:>{len(line) - 2 }}", '\n', line, '\n']
+    output2 = ' '.join(output)
+    print(output2)
+
+
+# v2.2
+for s in lst:
+    split_s = s.split()
+    top = split_s[0]
+    bottom = split_s[2]
+    operator = split_s[1]
+    if(len(top) > len(bottom)):
+        line = "-" * (len(top) + 2)
+    else:
+        line = "-" * (len(bottom) + 2)
+    output = [f"{top:>{len(line) + 1 }}", '\n', operator,
+              f"{bottom:>{len(line) - 2 }}", '\n', line, '\n']
+    print(*output)
