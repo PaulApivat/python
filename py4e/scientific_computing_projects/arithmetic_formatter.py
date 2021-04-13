@@ -131,4 +131,6 @@ for s in lst:
         line = "-" * (len(bottom) + 2)
     output = [f"{top:>{len(line) + 1 }}", '\n', operator,
               f"{bottom:>{len(line) - 2 }}", '\n', line, '\n']
-    print(' '.join(output))
+    print(*output)
+
+   print(' '.join(output))
