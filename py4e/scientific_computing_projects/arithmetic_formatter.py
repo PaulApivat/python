@@ -57,33 +57,6 @@ def arithmetic_arranger(problems):
 
 lst = ["32 + 698", "3801 - 2", "45 + 43", "123 + 49"]
 
-for s in lst:
-    split_s = s.split()
-    top = split_s[0]
-    bottom = '\n'+split_s[1] + ' '+split_s[2]
-    len_top = len(top)
-    len_bottom = len(bottom)
-    if(len_top > len_bottom):
-        line = '_'*len_top
-    else:
-        line = '_'*len_bottom
-    print(top, bottom, line)
-
-
-# v2.0
-# wrap {len(line)} inside f-string
-
-for s in lst:
-    split_s = s.split()
-    top = split_s[0]
-    bottom = split_s[2]
-    operator = split_s[1]
-    if(len(top) > len(bottom)):
-        line = "-" * (len(top) + 2)
-    else:
-        line = "-" * (len(bottom) + 2)
-    print(f"{top:>{len(line) + 1 }}", '\n', operator,
-          f"{bottom:>{len(line) - 2 }}", '\n', line, '\n')
 
 # v2.1
 for s in lst:
@@ -113,24 +86,14 @@ for s in lst:
         line = "-" * (len(bottom) + 2)
     output = [f"{top:>{len(line) + 1 }}", '\n', operator,
               f"{bottom:>{len(line) - 2 }}", '\n', line, '\n']
-    print(' '.join([x for x in output]))
+    print(' '.join([x for x in output]), end='')
 
-    print(*output)
-    print(type(output))
-    print(len(output))
-
-# v2.3 - nested list, then print side-by-side?
-for s in lst:
-    split_s = s.split()
-    top = split_s[0]
-    bottom = split_s[2]
-    operator = split_s[1]
-    if(len(top) > len(bottom)):
-        line = "-" * (len(top) + 2)
-    else:
-        line = "-" * (len(bottom) + 2)
-    output = [f"{top:>{len(line) + 1 }}", '\n', operator,
-              f"{bottom:>{len(line) - 2 }}", '\n', line, '\n']
-    print(*output)
-
-   print(' '.join(output))
+    # Different Options to print output
+    print(output)  # four lists printed vertically
+    print(output, end='')  # four lists printed horizontally
+    print(*output)  # four lists, joined, printed vertically
+    print(*output, end='')  # same as above, remove last '\n'
+    print(' '.join(output))  # same as above
+    print(' '.join(output), end='')  # same
+    print(' '.join([x for x in output]))  # same
+    print(' '.join([x for x in output]), end='')  # same
