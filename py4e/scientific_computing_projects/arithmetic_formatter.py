@@ -17,7 +17,7 @@
 
 
 # problematic list
-prob_list = ["32 + 698", "3801 - 2", "45 + 43", "123 + 49", "1 + 3"]
+prob_list = ["32 + 698", "3801 - 2", "45 + 43", "123 + 49", "1 + 38398"]
 prob_list_2 = ["32 + 698", "3801 - 2", "45 + 43", "1 x 3"]
 prob_list_3 = ["32 + 698", "3801 - 2", "45 + 43", "1 / 3"]
 problems = ["32 / 698", "3801 - 2", "45 + 4?3", "123 + 49", "1 + 345673"]
@@ -113,4 +113,22 @@ for s in lst:
         line = "-" * (len(bottom) + 2)
     output = [f"{top:>{len(line) + 1 }}", '\n', operator,
               f"{bottom:>{len(line) - 2 }}", '\n', line, '\n']
+    print(' '.join([x for x in output]))
+
     print(*output)
+    print(type(output))
+    print(len(output))
+
+# v2.3 - nested list, then print side-by-side?
+for s in lst:
+    split_s = s.split()
+    top = split_s[0]
+    bottom = split_s[2]
+    operator = split_s[1]
+    if(len(top) > len(bottom)):
+        line = "-" * (len(top) + 2)
+    else:
+        line = "-" * (len(bottom) + 2)
+    output = [f"{top:>{len(line) + 1 }}", '\n', operator,
+              f"{bottom:>{len(line) - 2 }}", '\n', line, '\n']
+    print(' '.join(output))
