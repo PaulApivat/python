@@ -1,3 +1,6 @@
+# Source:
+# https://forum.freecodecamp.org/t/arithmetic-formatter-code-review-fail-return-on-browser/425203
+
 import operator
 
 
