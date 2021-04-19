@@ -1,6 +1,8 @@
+from collections import OrderedDict
+
 import operator
 
-print("arithmetic2.py running...")
+print("experimental2.py running...")
 
 # Test in order
 
@@ -39,7 +41,7 @@ def is_correct_format(problems):
 
 def arithmetic_arranger(problems, solve=False):
     if is_correct_format(problems):
-        #arranged_problems = ""
+        # arranged_problems = ""
         dict = {"+": operator.add, "-": operator.sub}
         for prob in problems:
             prob_split = prob.split()
@@ -58,18 +60,31 @@ def arithmetic_arranger(problems, solve=False):
 
 def arithmetic_arranger2(problems, solve=False):
     if is_correct_format(problems):
-        #arranged_problems = ""
+        arranged_problems = ""
         dict = {"+": operator.add, "-": operator.sub}
+        first = [*range(len(problems))]
+        second = [*range(len(problems))]
+        sign = [*range(len(problems))]
+        x = 0
+        for i in problems:
+            first[x], sign[x], second[x] = i.split()
+            x += 1
+        # each line
         for prob in problems:
             prob_split = prob.split()
             first = prob_split[0]
             second = prob_split[2]
             sign = prob_split[1]
-            if(len(first) > len(second)):
-                line = "-" * (len(first) + 2)
-            else:
-                line = "-" * (len(second) + 2)
-            arranged_problems = [f"{first:>{len(line) + 1 }}", '\n', sign,
-                                 f"{second:>{len(line) - 2 }}", '\n', line, '\n']
+            line = str(
+                "--" + "-" * (len(str(max(int(first), int(second))))) + "")
 
-        return print(' '.join(arranged_problems))
+            arranged = [f"{first:>{len(line) + 1 }}", '\n', sign,
+                        f"{second:>{len(line) - 2 }}", '\n', line, '\n']
+            #print(' '.join(arranged))
+
+            arranged_problems += ' '.join(arranged) + ''
+
+        return arranged_problems
+
+
+print(arithmetic_arranger2(lst))
