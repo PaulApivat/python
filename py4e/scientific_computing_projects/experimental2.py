@@ -82,9 +82,51 @@ def arithmetic_arranger2(problems, solve=False):
                         f"{second:>{len(line) - 2 }}", '\n', line, '\n']
             #print(' '.join(arranged))
 
-            arranged_problems += ' '.join(arranged) + ''
+            arranged_problems += ' '.join(arranged) + '\n'
 
         return arranged_problems
 
 
 print(arithmetic_arranger2(lst))
+
+
+def arithmetic_arranger3(problems, solve=False):
+    if is_correct_format(problems):
+        arranged_problems = ""
+        dict = {"+": operator.add, "-": operator.sub}
+        first = [*range(len(problems))]
+        second = [*range(len(problems))]
+        sign = [*range(len(problems))]
+        x = 0
+        for i in problems:
+            first[x], sign[x], second[x] = i.split()
+            x += 1
+        # each line
+        # first line
+        for i in range(len(problems)):
+            arranged_problems += str(" " * (len(str(max(int(first[i]), int(second[i])))) - len(
+                str(first[i])) + 2) + first[i] + " "*4)
+        arranged_problems += str("\n")
+
+        # second line
+        for i in range(len(problems)):
+            arranged_problems += str(sign[i] + " " * (len(str(max(int(first[i]), int(second[i])))) - len(
+                str(second[i])) + 1) + second[i] + " "*4)
+        arranged_problems += str("\n")
+
+        # third line
+        for i in range(len(problems)):
+            arranged_problems += str("--" + "-" *
+                                     (len(str(max(int(first[i]), int(second[i]))))) + "    ")
+        arranged_problems += str("\n")
+
+        if solve:
+            total = [*range(len(problems))]
+            x = 0
+            for i in range(len(problems)):
+                total[x] = dict[sign[i]](int(first[i]), int(second[i]))
+                arranged_problems += str(" " * (len(str(max(int(first[i]), int(second[i])))) - len(
+                    str(total[x])) + 2) + str(total[x]) + "    ")
+                x += 1
+
+        return arranged_problems

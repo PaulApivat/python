@@ -54,17 +54,20 @@ def arithmetic_arranger(problems, solve=False):
                 str(first[i])) + 2) + first[i] + " "*4)
 
         arranged_problems += str("\n")
+        print("First line: \n", arranged_problems)
         # second line
         for i in range(len(problems)):
             arranged_problems += str(
                 sign[i] + " " * (len(str(max(int(first[i]), int(second[i])))) - len(second[i]) + 1) + second[
                     i] + " "*4)
         arranged_problems += str("\n")
+        print("Second line: \n", arranged_problems)
         # Third line
         for i in range(len(problems)):
             arranged_problems += str("--" + "-" *
                                      (len(str(max(int(first[i]), int(second[i]))))) + "    ")
         arranged_problems += str("\n")
+        print("Third line: \n", arranged_problems)
 
         if solve:
             total = [*range(len(problems))]
@@ -78,5 +81,5 @@ def arithmetic_arranger(problems, solve=False):
         return arranged_problems
 
 
-print(arithmetic_arranger(lst))
-print(arithmetic_arranger(lst, True))
+# print(arithmetic_arranger(lst))
+# print(arithmetic_arranger(lst, True))
