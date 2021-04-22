@@ -89,6 +89,8 @@ def arithmetic_arranger2(problems, solve=False):
 
 print(arithmetic_arranger2(lst))
 
+# arithmetic_arranger3
+
 
 def arithmetic_arranger3(problems, solve=False):
     if is_correct_format(problems):
@@ -106,18 +108,21 @@ def arithmetic_arranger3(problems, solve=False):
         for i in range(len(problems)):
             arranged_problems += str(" " * (len(str(max(int(first[i]), int(second[i])))) - len(
                 str(first[i])) + 2) + first[i] + " "*4)
+
         arranged_problems += str("\n")
 
         # second line
         for i in range(len(problems)):
             arranged_problems += str(sign[i] + " " * (len(str(max(int(first[i]), int(second[i])))) - len(
                 str(second[i])) + 1) + second[i] + " "*4)
+
         arranged_problems += str("\n")
 
         # third line
         for i in range(len(problems)):
             arranged_problems += str("--" + "-" *
                                      (len(str(max(int(first[i]), int(second[i]))))) + "    ")
+
         arranged_problems += str("\n")
 
         if solve:
@@ -128,5 +133,36 @@ def arithmetic_arranger3(problems, solve=False):
                 arranged_problems += str(" " * (len(str(max(int(first[i]), int(second[i])))) - len(
                     str(total[x])) + 2) + str(total[x]) + "    ")
                 x += 1
+
+        return arranged_problems
+
+
+# arithmetic_arranger4
+
+def arithmetic_arranger4(problems, solve=False):
+    if is_correct_format(problems):
+        arranged_problems = ""
+        dict = {"+": operator.add, "-": operator.sub}
+        first = [*range(len(problems))]
+        second = [*range(len(problems))]
+        sign = [*range(len(problems))]
+        x = 0
+        for i in problems:
+            first[x], sign[x], second[x] = i.split()
+            x += 1
+        # each line
+        for prob in problems:
+            prob_split = prob.split()
+            first = prob_split[0]
+            second = prob_split[2]
+            sign = prob_split[1]
+            line = str(
+                "--" + "-" * (len(str(max(int(first), int(second))))) + "")
+
+            arranged = [f"{first:>{len(line) + 1 }}", '\n', sign,
+                        f"{second:>{len(line) - 2 }}", '\n', line, '\n']
+            #print(' '.join(arranged))
+
+            arranged_problems += ' '.join(arranged) + '\n'
 
         return arranged_problems
