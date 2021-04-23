@@ -42,13 +42,13 @@ def is_correct_format(problems):
 def arithmetic_arranger(problems, solve=False):
     if is_correct_format(problems):
         arranged_problems = ""
+        dict = {"+": operator.add, "-": operator.sub}
         first = [*range(len(problems))]
-        operator = [*range(len(problems))]
+        op = [*range(len(problems))]
         second = [*range(len(problems))]
-        #dict = {"+": operator.add, "-": operator.sub}
         x = 0
         for prob in problems:
-            first[x], operator[x], second[x] = prob.split()
+            first[x], op[x], second[x] = prob.split()
             x += 1
         # first line
         for i in range(len(problems)):
@@ -56,10 +56,10 @@ def arithmetic_arranger(problems, solve=False):
             len_second = len(str(int(second[i])))
             if len_first > len_second:
                 arranged_problems += str(" " * (len_first -
-                                                len(str(first[i])) + 2) + first[i] + " "*4)
+                                                len_first + 2) + first[i] + " "*4)
             else:
                 arranged_problems += str(" " * (len_second -
-                                                len(str(first[i])) + 2) + first[i] + " "*4)
+                                                len_first + 2) + first[i] + " "*4)
         arranged_problems += str("\n")
 
         # second line
@@ -67,13 +67,12 @@ def arithmetic_arranger(problems, solve=False):
             len_first = len(str(int(first[i])))
             len_second = len(str(int(second[i])))
             if len_first > len_second:
-                arranged_problems += str(operator[i] + " " * (len_first -
-                                                              len(str(second[i])) + 1) + second[i] + " "*4)
+                arranged_problems += str(op[i] + " " * (
+                    len_first - len_second + 1) + second[i] + " "*4)
             else:
-                arranged_problems += str(operator[i] + " " * (len_second -
-                                                              len(str(second[i])) + 1) + second[i] + " "*4)
+                arranged_problems += str(op[i] + " " * (
+                    len_second - len_second + 1) + second[i] + " "*4)
         arranged_problems += str("\n")
-        print(arranged_problems)
 
         # third line
         for i in range(len(problems)):
@@ -86,7 +85,25 @@ def arithmetic_arranger(problems, solve=False):
                 arranged_problems += str("--" + "-" * len_second + "    ")
         arranged_problems += str("\n")
 
-        return print(' '.join(arranged_problems))
+        # solve parameter
+        if solve:
+            total = [*range(len(problems))]
+            x = 0
+            for i in range(len(problems)):
+                total[x] = dict[op[i]](int(first[i]), int(second[i]))
+                len_first = len(str(int(first[i])))
+                len_second = len(str(int(second[i])))
+                if len_first > len_second:
+                    arranged_problems += str(" " * (len_first -
+                                                    len(str(total[x])) + 2) + str(total[x]) + "    ")
+                else:
+                    arranged_problems += str(" " * (len_second -
+                                                    len(str(total[x])) + 2) + str(total[x]) + "    ")
+                x += 1
+
+        print(arranged_problems)
+
+        return arranged_problems
 
 
 def arithmetic_arranger2(problems, solve=False):
