@@ -11,32 +11,34 @@ problems = ["32 / 698", "3801 - 2", "45 + 4?3", "123 + 49", "1 + 345673"]
 
 
 def is_correct_format(problems):
+    error = ' '
+    correct_format = True
     if len(problems) > 5:
-        print('Error: Too many problems.')
+        error = 'Error: Too many problems.'
+        correct_format = False
     else:
         for item in problems:
             problem = item.split(' ')
             wrong_operator = ['x', '/']
 
             if (not problem[0].isdigit() or not problem[2].isdigit()):
-                print("Error: Numbers must only contain digits.")
+                error = "Error: Numbers must only contain digits."
                 correct_format = False
-                print("problematic equation: ", problem)
+                break
 
             elif any(x in problem for x in wrong_operator):
-                print("Error: Operator must be '+' or '-'.")
+                error = "Error: Operator must be '+' or '-'."
                 correct_format = False
-                print("problematic equation: ", problem)
+                break
 
             elif max(len(problem[0]), len(problem[2])) > 4:
-                print("Error: Numbers cannot be more than four digits.")
+                error = "Error: Numbers cannot be more than four digits."
                 correct_format = False
-                print("problematic equation: ", problem)
-
+                break
             else:
                 correct_format = True
 
-        return correct_format
+        return {"correct_format": correct_format, "error": error}
 
 
 def arithmetic_arranger(problems, solve=False):
@@ -106,7 +108,5 @@ def arithmetic_arranger(problems, solve=False):
                                                     len(str(total[x])) + 2) + str(total[x]) + "    ")
                 x += 1
             arranged_problems = arranged_problems[:-4]
-
-        print(arranged_problems)
 
         return arranged_problems
