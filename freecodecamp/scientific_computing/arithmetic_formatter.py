@@ -11,89 +11,110 @@
 
 # use .split() to split string into parts
 
-# resources:
-# https://stackoverflow.com/questions/16335771/shorter-way-to-check-if-a-string-is-not-isdigit
-# https://stackoverflow.com/questions/21388541/how-do-you-check-in-python-whether-a-string-contains-only-numbers/21388567
-
 
 # problematic list
-prob_list = ["32 + 698", "3801 - 2", "45 + 43", "123 + 49", "1 + 38398"]
+import operator
+from collections import OrderedDict
+
+lst = ["32 + 698", "3801 - 2", "45 + 43", "123 + 49"]
+lst2 = ["3 + 855", "3801 - 2", "45 + 43", "123 + 49"]
 prob_list_2 = ["32 + 698", "3801 - 2", "45 + 43", "1 x 3"]
 prob_list_3 = ["32 + 698", "3801 - 2", "45 + 43", "1 / 3"]
 problems = ["32 / 698", "3801 - 2", "45 + 4?3", "123 + 49", "1 + 345673"]
 
 
-def arithmetic_arranger(problems):
+def arithmetic_arranger(problems, solve=False):
+    error = ' '
+    arranged_problems = ""
+    correct_format = True
+    if len(problems) > 5:
+        error = 'Error: Too many problems.'
+        correct_format = False
+        return error
+    else:
+        for item in problems:
+            problem = item.split(' ')
+            wrong_operator = ['x', '/']
 
-    if(len(problems) > 4):
-        print("Error: Too many problems.")
+            if (not problem[0].isdigit() or not problem[2].isdigit()):
+                error = "Error: Numbers must only contain digits."
+                correct_format = False
+                return error
 
-    """check for inappropriate operators: x or / """
-    """check numbers only contain digits"""
-    """check if numbers more than four digits"""
+            elif any(x in problem for x in wrong_operator):
+                error = "Error: Operator must be '+' or '-'."
+                correct_format = False
+                return error
 
-    for item in problems:
-        split_prob = item.split()
-        matches = ['x', '/']
-        if any(x in split_prob for x in matches):
-            print("Error: Operator must be '+' or '-'.")
-        # short way to check if string is not isdigit()
-        elif(not split_prob[0].isdigit() or not split_prob[2].isdigit()):
-            print("Error: Numbers must only contain digits.")
-        # prevent TypeError: '<' not supported between instances of 'str' and 'int'
-        elif(int(split_prob[0]) > 4 or int(split_prob[2]) > 4):
-            print("Error: Numbers cannot be more than four digits.")
-        else:
-            continue
+            elif max(len(problem[0]), len(problem[2])) > 4:
+                error = "Error: Numbers cannot be more than four digits."
+                correct_format = False
+                return error
+            else:
+                correct_format = True
 
-    print("Continue. Fine.")
+    if correct_format:
+        #arranged_problems = ""
+        dict = {"+": operator.add, "-": operator.sub}
+        first = [*range(len(problems))]
+        op = [*range(len(problems))]
+        second = [*range(len(problems))]
+        x = 0
+        for prob in problems:
+            first[x], op[x], second[x] = prob.split()
+            x += 1
+        # first line
+        for i in range(len(problems)):
+            len_first = len(str(int(first[i])))
+            len_second = len(str(int(second[i])))
+            if len_first > len_second:
+                arranged_problems += str(" " * (len_first -
+                                                len_first + 2) + first[i] + " "*4)
+            else:
+                arranged_problems += str(" " * (len_second -
+                                                len_first + 2) + first[i] + " "*4)
+        arranged_problems = arranged_problems[:-4]
+        arranged_problems += str("\n")
 
-    arranged_problems = ["Initial check passed."]
+        # second line
+        for i in range(len(problems)):
+            len_first = len(str(int(first[i])))
+            len_second = len(str(int(second[i])))
+            if len_first > len_second:
+                arranged_problems += str(op[i] + " " * (
+                    len_first - len_second + 1) + second[i] + "    ")
+            else:
+                arranged_problems += str(op[i] + " " * (
+                    len_second - len_second + 1) + second[i] + "    ")
+        arranged_problems = arranged_problems[:-4]
+        arranged_problems += str("\n")
+
+        # third line
+        for i in range(len(problems)):
+            len_first = len(str(int(first[i])))
+            len_second = len(str(int(second[i])))
+            if len_first > len_second:
+                arranged_problems += str("--" + "-" * len_first + "    ")
+            else:
+                arranged_problems += str("--" + "-" * len_second + "    ")
+        arranged_problems = arranged_problems[:-4]
+        arranged_problems += str("\n")
+
+        # solve parameter
+        if solve:
+            total = [*range(len(problems))]
+            x = 0
+            for i in range(len(problems)):
+                total[x] = dict[op[i]](int(first[i]), int(second[i]))
+                len_first = len(str(int(first[i])))
+                len_second = len(str(int(second[i])))
+                if len_first > len_second:
+                    arranged_problems += str(" " * (len_first -
+                                                    len(str(total[x])) + 2) + str(total[x]) + "    ")
+                else:
+                    arranged_problems += str(" " * (len_second -
+                                                    len(str(total[x])) + 2) + str(total[x]) + "    ")
+                x += 1
+            arranged_problems = arranged_problems[:-4]
 
     return arranged_problems
-
-# Re-Formatting Math Problems
-
-
-lst = ["32 + 698", "3801 - 2", "45 + 43", "123 + 49"]
-
-
-# v2.1
-for s in lst:
-    split_s = s.split()
-    top = split_s[0]
-    bottom = split_s[2]
-    operator = split_s[1]
-    if(len(top) > len(bottom)):
-        line = "-" * (len(top) + 2)
-    else:
-        line = "-" * (len(bottom) + 2)
-    output = [f"{top:>{len(line) + 1 }}", '\n', operator,
-              f"{bottom:>{len(line) - 2 }}", '\n', line, '\n']
-    output2 = ' '.join(output)
-    print(output2)
-
-
-# v2.2
-for s in lst:
-    split_s = s.split()
-    top = split_s[0]
-    bottom = split_s[2]
-    operator = split_s[1]
-    if(len(top) > len(bottom)):
-        line = "-" * (len(top) + 2)
-    else:
-        line = "-" * (len(bottom) + 2)
-    output = [f"{top:>{len(line) + 1 }}", '\n', operator,
-              f"{bottom:>{len(line) - 2 }}", '\n', line, '\n']
-    print(' '.join([x for x in output]), end='')
-
-    # Different Options to print output
-    print(output)  # four lists printed vertically
-    print(output, end='')  # four lists printed horizontally
-    print(*output)  # four lists, joined, printed vertically
-    print(*output, end='')  # same as above, remove last '\n'
-    print(' '.join(output))  # same as above
-    print(' '.join(output), end='')  # same
-    print(' '.join([x for x in output]))  # same
-    print(' '.join([x for x in output]), end='')  # same
