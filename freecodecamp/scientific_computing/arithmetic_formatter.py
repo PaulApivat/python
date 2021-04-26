@@ -98,10 +98,11 @@ def arithmetic_arranger(problems, solve=False):
             else:
                 arranged_problems += str("--" + "-" * len_second + "    ")
         arranged_problems = arranged_problems[:-4]
-        arranged_problems += str("\n")
+        #arranged_problems += str("\n")
 
         # solve parameter
         if solve:
+            arranged_problems += str("\n")
             total = [*range(len(problems))]
             x = 0
             for i in range(len(problems)):
