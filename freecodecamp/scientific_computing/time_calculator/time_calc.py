@@ -23,13 +23,31 @@ def add_time(start, duration, optional_start_day=False):
         print('Error: the Hour must be a whole number')
     else:
         print('Duration time is valid')
-        print(duration_split[0])
-    new_time = duration_split
 
     # new_hour = start[hour] + duration[hour]
+    new_hour = int(hour_min[0]) + int(duration_split[0])
     # new_minute = start[minute] + duration[minute]
-    # if new_minute > 60, add 1 to new_hour
+    new_minute = int(hour_min[1]) + int(duration_split[1])
+    # if new_minute > 60, add 1 to new_hour AND turn new_minute in '00'
+    if new_minute > 59:
+        new_hour += 1
+        new_minute = '0' + str(new_minute - 60)
+        #new_time = str(new_hour) + ':' + str(new_minute)
+    else:
+        new_hour += 0
+        #new_time = str(new_hour) + ':' + str(new_minute)
+
+    print("new_hour check: ", new_hour)
+    print("new_minute check: ", new_minute)
     # if new_hour > 12, return PM, else return AM
+    if (new_hour > 12) and (start_split[1] == 'AM'):
+        new_time = str(new_hour - 12) + ':' + str(new_minute) + str(' PM')
+    elif (new_hour > 12) and (start_split[1] == 'PM'):
+        new_time = str(new_hour - 12) + ':' + str(new_minute) + str(' AM')
+    elif (new_hour < 12) and (start_split[1] == 'PM'):
+        new_time = str(new_hour) + ':' + str(new_minute) + str(' PM')
+    else:
+        new_time = str(new_hour) + ':' + str(new_minute) + str(' AM')
 
     # multi-day result
     # if new_hour > 24 & < 48, print '(next day)'
@@ -50,4 +68,9 @@ def add_time(start, duration, optional_start_day=False):
     return new_time
 
 
-print(add_time("3:00 PM", "3.4:50"))
+#print(add_time("3:00 PM", "3:10"))
+#print(add_time("11:30 AM", "2:32"))
+#print(add_time("11:43 AM", "00:20"))
+#print(add_time("10:10 PM", "3:30"))
+print(add_time("11:43 PM", "24:20"))
+print(add_time("6:30 PM", "205:12"))
