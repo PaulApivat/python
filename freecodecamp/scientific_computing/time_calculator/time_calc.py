@@ -21,6 +21,15 @@ def add_time(start, duration, optional_start_day=False):
     # if new_hour > 12, return PM, else return AM
 
     # multi-day result
+    # if new_hour > 24 & < 48, print '(next day)'
+    # then for every 24 hours added to new_hour, update 'n' in '(n days later)'
+
+    # (optional parameter): day-of-week
+    # since its case INsensitive, convert day-of-week to lower case
+    # days_of_week_list = ['Sunday', 'Monday', 'Tuesday', Wednesday', 'Thursday', 'Friday', 'Saturday']
+    # check if provided day-of-week parameter "matches" a string in days_of_week_list
+    # if not, print('Error: you misspelled the day of week')
+    # for every 24 hours added, take day-of-week parameter, and increment to the next day.
 
     # if new_time is the next day, return 'new_time (next day)'
     # if new_time is n =< 1 day later, return 'new_time (next day)'
