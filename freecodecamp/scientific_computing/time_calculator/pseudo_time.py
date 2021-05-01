@@ -8,23 +8,12 @@ def add_time(start, duration, optional_start_day=False):
 
     # Start time is valid
     # split start w/ .split() function - results in list with two strings ['hour:minute', 'AM/PM']
-    start_split = start.split()
-    # take first string in list (list[0]) and .split(':') with colon - result in split hour from minute
-    hour_min = start_split[0].split(':')
+    # take first string in list (list[0]) and .split(':') with colon
 
     # Check if Duration time is valid
     # split duration w/ .split(':') and colon - results in ['hour', 'minute']
-    duration_split = duration.split(':')
     # minute < 60, else print('Error: Minutes in the duration time must be less than 60')
-    if int(duration_split[1]) > 60:
-        print('Error: Minutes in duration time must be less than 60')
     # check if hour is a whole number, hour%1==0 else print('Error: the Hour must be a whole number')
-    elif float(duration_split[0])*10 % 10 != 0:
-        print('Error: the Hour must be a whole number')
-    else:
-        print('Duration time is valid')
-        print(duration_split[0])
-    new_time = duration_split
 
     # new_hour = start[hour] + duration[hour]
     # new_minute = start[minute] + duration[minute]
@@ -48,6 +37,3 @@ def add_time(start, duration, optional_start_day=False):
     # if optional_start_day = True, return 'new_time, day-of-week, (n days later)'
 
     return new_time
-
-
-print(add_time("3:00 PM", "3.4:50"))
