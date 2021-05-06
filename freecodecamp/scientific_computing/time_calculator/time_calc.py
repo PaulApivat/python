@@ -50,7 +50,24 @@ def add_time(start, duration, optional_start_day=False):
         new_time = str(new_hour) + ':' + str(new_minute) + str(' AM')
 
     print("new_time check: ", new_time)
-    print("old time check: ", start)
+    print("old time check: ", hour_min)
+    #print("time difference: ", int(new_time) - int(start))
+
+    # multi-day result
+    # take new_time,
+    # split_new_time = new_time.split()
+    # new_time_hour_min = split_new_time[0].split(':') - here '1:40 AM' becomes ['1', '40']
+
+    # Subtract new 2 times
+    # if ['10', '10'] + ['1', '40'] = ['11', '50']
+
+    # Actually just subtract new_hour and new_minute check from prior
+    # if PM and new_hour > 12, then 'next day' ACTUALLY this cannot be if-else, since we have '2 days later' or '9 days later'
+    # must be CALCULATED
+
+    # ['13', '40'] - ['10', '10'] = 3 hrs, 30 mins
+    # if
+
     # multi-day result
     # if new_hour > 24 & < 48, print '(next day)'
     # then for every 24 hours added to new_hour, update 'n' in '(n days later)'
@@ -74,6 +91,6 @@ def add_time(start, duration, optional_start_day=False):
 #print(add_time("11:30 AM", "2:32"))
 #print(add_time("11:30 AM", "2:32", "Monday"))
 #print(add_time("11:43 AM", "00:20"))
-print(add_time("10:10 PM", "3:30"))
+print(add_time("10:10 PM", "3:30"))   # should have '(next day)'
 #print(add_time("11:43 PM", "24:20"))
 #print(add_time("6:30 PM", "205:12"))
