@@ -16,7 +16,7 @@ def add_time(start, duration, optional_start_day=False):
     # split duration w/ .split(':') and colon - results in ['hour', 'minute']
     duration_split = duration.split(':')
     # minute < 60, else print('Error: Minutes in the duration time must be less than 60')
-    if int(duration_split[1]) > 60:
+    if int(duration_split[1]) > 59:
         print('Error: Minutes in duration time must be less than 60')
     # check if hour is a whole number, hour%1==0 else print('Error: the Hour must be a whole number')
     elif float(duration_split[0])*10 % 10 != 0:
@@ -49,6 +49,8 @@ def add_time(start, duration, optional_start_day=False):
     else:
         new_time = str(new_hour) + ':' + str(new_minute) + str(' AM')
 
+    print("new_time check: ", new_time)
+    print("old time check: ", start)
     # multi-day result
     # if new_hour > 24 & < 48, print '(next day)'
     # then for every 24 hours added to new_hour, update 'n' in '(n days later)'
@@ -70,7 +72,8 @@ def add_time(start, duration, optional_start_day=False):
 
 #print(add_time("3:00 PM", "3:10"))
 #print(add_time("11:30 AM", "2:32"))
+#print(add_time("11:30 AM", "2:32", "Monday"))
 #print(add_time("11:43 AM", "00:20"))
-#print(add_time("10:10 PM", "3:30"))
-print(add_time("11:43 PM", "24:20"))
-print(add_time("6:30 PM", "205:12"))
+print(add_time("10:10 PM", "3:30"))
+#print(add_time("11:43 PM", "24:20"))
+#print(add_time("6:30 PM", "205:12"))
