@@ -37,8 +37,6 @@ def add_time(start, duration, optional_start_day=False):
         new_hour += 0
         #new_time = str(new_hour) + ':' + str(new_minute)
 
-    print("new_hour check: ", new_hour)
-    print("new_minute check: ", new_minute)
     # if new_hour > 12, return PM, else return AM
     if (new_hour > 12) and (start_split[1] == 'AM'):
         new_time = str(new_hour - 12) + ':' + str(new_minute) + str(' PM')
@@ -49,24 +47,24 @@ def add_time(start, duration, optional_start_day=False):
     else:
         new_time = str(new_hour) + ':' + str(new_minute) + str(' AM')
 
-    print("new_time check: ", new_time)
+    print("new_hour check: ", new_hour)
+    print("new_minute check: ", new_minute)
     print("old time check: ", hour_min)
     #print("time difference: ", int(new_time) - int(start))
-
+    print("Original AM/PM: ", start_split[1])
     # multi-day result
-    # take new_time,
-    # split_new_time = new_time.split()
-    # new_time_hour_min = split_new_time[0].split(':') - here '1:40 AM' becomes ['1', '40']
-
+    if (start_split[1] == 'PM'):
+        day_later_time = round(new_hour / 24)
+        if (day_later_time <= 1):
+            new_time += str(' (next day)')
+        else:
+            new_time += str(' (' + f"{day_later_time} " + "days later" + ')')
     # Subtract new 2 times
     # if ['10', '10'] + ['1', '40'] = ['11', '50']
 
     # Actually just subtract new_hour and new_minute check from prior
     # if PM and new_hour > 12, then 'next day' ACTUALLY this cannot be if-else, since we have '2 days later' or '9 days later'
     # must be CALCULATED
-
-    # ['13', '40'] - ['10', '10'] = 3 hrs, 30 mins
-    # if
 
     # multi-day result
     # if new_hour > 24 & < 48, print '(next day)'
@@ -92,5 +90,5 @@ def add_time(start, duration, optional_start_day=False):
 #print(add_time("11:30 AM", "2:32", "Monday"))
 #print(add_time("11:43 AM", "00:20"))
 print(add_time("10:10 PM", "3:30"))   # should have '(next day)'
-#print(add_time("11:43 PM", "24:20"))
-#print(add_time("6:30 PM", "205:12"))
+print(add_time("11:43 PM", "24:20"))  # should have '(2 days later)'
+print(add_time("6:30 PM", "205:12"))  # should have '(9 days later)'
