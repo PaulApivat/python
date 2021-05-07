@@ -26,8 +26,14 @@ def add_time(start, duration, optional_start_day=False):
 
     # new_hour = start[hour] + duration[hour]
     new_hour = int(hour_min[0]) + int(duration_split[0])
+    reformat_hour = round(new_hour / 12)
+    day_later_time = round(new_hour / 24)
+    print("new_hour check: ", new_hour)
+    print("new_hour reformat: ", reformat_hour)
+    print("day_later :", day_later_time)
     # new_minute = start[minute] + duration[minute]
     new_minute = int(hour_min[1]) + int(duration_split[1])
+    print("new_minute check: ", new_minute)
     # if new_minute > 60, add 1 to new_hour AND turn new_minute in '00'
     if new_minute > 59:
         new_hour += 1
@@ -47,8 +53,6 @@ def add_time(start, duration, optional_start_day=False):
     else:
         new_time = str(new_hour) + ':' + str(new_minute) + str(' AM')
 
-    print("new_hour check: ", new_hour)
-    print("new_minute check: ", new_minute)
     print("old time check: ", hour_min)
     #print("time difference: ", int(new_time) - int(start))
     print("Original AM/PM: ", start_split[1])
@@ -89,6 +93,6 @@ def add_time(start, duration, optional_start_day=False):
 #print(add_time("11:30 AM", "2:32"))
 #print(add_time("11:30 AM", "2:32", "Monday"))
 #print(add_time("11:43 AM", "00:20"))
-print(add_time("10:10 PM", "3:30"))   # should have '(next day)'
-print(add_time("11:43 PM", "24:20"))  # should have '(2 days later)'
+# print(add_time("10:10 PM", "3:30"))   # should have '(next day)'
+# print(add_time("11:43 PM", "24:20"))  # should have '(2 days later)'
 print(add_time("6:30 PM", "205:12"))  # should have '(9 days later)'
