@@ -1,7 +1,8 @@
 from urllib import request
 import requests
 import json 
-import time 
+#import time
+import pprint
 import pandas as pd
 import os
 
@@ -32,6 +33,8 @@ HEADER = {'Authorization': 'Bearer ' + f'{auth_token}'}
 # could not find token abi
 
 # --- Stable Coin Supply - Mkt Share
+
+"""
 usdc_supply = requests.get('https://gateway.credmark.com/v1/tokens/1/0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48/total-supply', headers=HEADER)
 usdt_supply = requests.get('https://gateway.credmark.com/v1/tokens/1/0xdAC17F958D2ee523a2206206994597C13D831ec7/total-supply', headers=HEADER)
 busd_supply = requests.get('https://gateway.credmark.com/v1/tokens/1/0x4Fabb145d64652a948d72533023f6E7A623C7C53/total-supply', headers=HEADER)
@@ -46,6 +49,9 @@ print(busd_supply.json())
 print(dai_supply.json())
 print(lusd_supply.json())
 print(frax_supply.json())
+
+
+"""
 
 #aave_token = requests.get('https://gateway.credmark.com/v1/tokens/1/0x7fc66500c84a76ad7e9c93437bfc5ac33e2ddae9/price?quoteAddress=0x00000000000000000000000000000000000003d2&blockNumber=15000000', headers=HEADER)
 #print(aave_token.json())
@@ -63,8 +69,17 @@ print(frax_supply.json())
 #print(usage.json())
 
 # ---- Curve Pool Info
-"""
 
+# authorization & header
+auth_token_new = os.environ.get('AUTH_TOKEN_NEW')
+#HEADER_NEW = {'Authorization': 'Bearer ' + f'{auth_token_new}'}
+
+headers = {
+    'Authorization': 'Bearer ' + f'{auth_token_new}',
+    'Content-Type': 'application/json'
+}
+
+# address Curve Metapool (LUSD - 3CRV)
 payload = {
   "slug": "curve-fi.pool-info",
   "chainId": 1,
@@ -74,10 +89,11 @@ payload = {
   }
 }
 
-curve_pool = requests.post('https://gateway.credmark.com/v1/model/run#curve-fi.pool-info', headers=HEADER, data=json.dumps(payload))
+curve_pool = requests.post('https://gateway.credmark.com/v1/model/run#curve-fi.pool-info', headers=headers, data=json.dumps(payload))
 
-print(curve_pool.json())
+print(curve_pool.status_code)
+
+pprint.pprint(curve_pool.json())
 
 #curve_pool = requests.post('https://gateway.credmark.com/v1/model/run#curve-fi.pool-info', data=payload)
 
-"""
