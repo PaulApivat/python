@@ -1,3 +1,7 @@
+"""
+solution: https://github.com/calthoff/tstp/tree/master/part_I/functions/challenges
+"""
+
 
 def square():
     a = input("type a number: ")
