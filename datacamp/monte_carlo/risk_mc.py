@@ -2,6 +2,7 @@ import random
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
+from scipy import interpolate
 
 # Liquidity Risk due to High Insolvencies as % of Available Liquidity 
 # Probability of Loss over 1 year: 9% or 0.09
@@ -118,3 +119,19 @@ hist, edges = np.histogram(results_nparray, bins = 40)
 cumrev = np.cumsum(hist[::-1])[::-1]*100/len(results_nparray)
 plt.plot(edges[:-1], cumrev)
 plt.show()
+
+
+xs = np.array([1,2,3,7,9])*(1e6)
+tols = np.array([100,60,10,2,1])
+xint = np.linspace(min(xs), max(xs))
+fit = interpolate.interp1d(xs, tols, kind='slinear')
+plt.plot(xint, fit(xint))
+plt.show()
+
+
+# Risk Measures
+
+# Obtain 5% Value-at-Risk, ask for the 95th percentile of the distribution (actual simulation results)
+np.percentile(results_nparray, 95)
+
+# TAIL Value-at-Risk
