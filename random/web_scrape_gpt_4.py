@@ -1,9 +1,10 @@
-import selenium
-import pandas as pd
+import time
 from selenium import webdriver
+from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.chrome.options import Options
 from bs4 import BeautifulSoup
+import pandas as pd
 
 # Set up the Chrome driver with headless options
 options = Options()
@@ -31,31 +32,46 @@ soup = BeautifulSoup(html, 'html.parser')
 section = soup.find('section')
 
 # Find all nested divs with class 'scam-database-table'
-#scam_tables = section.find_all('div', class_='scam-database-table')
 scam_tables = section.find_all('div', class_='scam-database-body')
 
 # Find all nested div tags within the 'scam-database-body' div
-#rows = scam_tables.find('div', class_='row')
+#rows = scam_tables[0].find_all('div', class_='row')
 
 # Extract the data from each row
-
-#data = {}
 data = []
-
 for row in scam_tables:
     chain = row.find('span', class_='content').text
     funds_lost = row.find_all('span', class_='content orange')[0].text
     issue = row.find_all('span', class_='content')[-2].text
     date = row.find_all('span', class_='content')[-1].text
-    print(f"Chain: {chain}, Funds lost: {funds_lost}, Issue: {issue}, Date: {date}")
     data.append([chain, funds_lost, issue, date])
 
-
+# Check if there are multiple pages and click through them to scrape all data
+try:
+    #next_button = driver.find_element(By.XPATH, '//button[@aria-label="Next page"]')
+    next_button = driver.find_element('div', class_='arrow right')
+    while next_button.is_enabled():
+        next_button.click()
+        time.sleep(2)
+        html = driver.page_source
+        soup = BeautifulSoup(html, 'html.parser')
+        section = soup.find('section')
+        scam_tables = section.find_all('div', class_='scam-database-body')
+        #rows = scam_tables[0].find_all('div', class_='row')
+        for row in scam_tables:
+            chain = row.find('span', class_='content').text
+            funds_lost = row.find_all('span', class_='content orange')[0].text
+            issue = row.find_all('span', class_='content')[-2].text
+            date = row.find_all('span', class_='content')[-1].text
+            data.append([chain, funds_lost, issue, date])
+        #next_button = driver.find_element(By.XPATH, '//button[@aria-label="Next page"]')
+        next_button = driver.find_element('div', class_='arrow right')
+except:
+    pass
 
 # Save the data as a pandas dataframe
 df = pd.DataFrame(data, columns=['Chain', 'Funds Lost', 'Issue', 'Date'])
 print(df)
 
-
 # Quit the driver
-driver.quit()
+driver.quit
