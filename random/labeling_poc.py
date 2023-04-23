@@ -1,6 +1,7 @@
 import requests
 import pandas as pd
 import ppdeep
+import itertools
 
 # URL of the API endpoint
 url = 'https://api.flipsidecrypto.com/api/v2/queries/c92a0918-e230-4e08-836e-3f9b6fd8feb9/data/latest'
@@ -21,6 +22,7 @@ print("Nunber of row for non_phishing df: ", len(non_phishing['BYTECODE'].index)
 
 print("Index for phishing df: ", phishing['BYTECODE'].index)
 print("Index for non_phishing df: ", non_phishing['BYTECODE'].index)
+
 
 """
 Index for phishing df:  Index([  0,   9,  24,  29,  30,  33,  35,  50,  51,  52,  73,  78,  79,  84,
@@ -68,3 +70,41 @@ print("compare_btwn_group_1: ", compare_btwn_group_1)
 print("compare_btwn_group_2: ", compare_btwn_group_2)
 print("compare_btwn_group_3: ", compare_btwn_group_3)
 print("compare_btwn_group_4: ", compare_btwn_group_4)
+
+
+"""
+Loop through phishing and non_phishing columns
+Take every permutation of all pairs, except duplicates
+Run each pair through ppdeep.compare() to get similarity scores
+Rank order similarity score column
+
+** Need a way to connect "hash pairs" with individual smart contract address. 
+"""
+# loop through phishing['BYTECODE']
+phishing_list = list()
+
+for i in phishing['BYTECODE'].index:
+      phishing_list.append(ppdeep.hash(phishing['BYTECODE'][i]))
+      print("all phishing hashes inserted.")
+
+#compare_phishing_list = [ppdeep.compare(p1, p2) for p1 in phishing_list for p2 in phishing_list]
+
+# loop through phishing_list, take each pair, excluding duplicates
+# put each unique pair through ppdeep.compare() to find similarity score
+# place each hashed pair and similarity score in a tuple
+compare_phishing_list = list()
+
+for x in phishing_list:
+      for y in phishing_list:
+            if x != y:
+                  compare_phishing_list.append((x + "&" + y, ppdeep.compare(x, y)))
+
+
+# Convert list of tuple to dataframe with two new columns
+# rank order 'similarity score' column in descending order by similarity score
+# The idea is to go back to the pair of addresses for each pair that had a high similarity score and see if contract names are similar
+phishing_df = pd.DataFrame(compare_phishing_list, columns = ['hashed pair', 'similarity score'])
+
+phishing_df_2 = phishing_df.sort_values('similarity score', ascending=False)
+
+print(phishing_df_2)
