@@ -3,8 +3,12 @@ import pandas as pd
 import ppdeep
 import itertools
 
+import os
+from dotenv import load_dotenv
+load_dotenv()
+
 # URL of the API endpoint
-url = 'https://api.flipsidecrypto.com/api/v2/queries/c92a0918-e230-4e08-836e-3f9b6fd8feb9/data/latest'
+url = os.environ.get('FLIPSIDE_API')
 
 # Send a GET request to the URL
 response = requests.get(url)
@@ -80,12 +84,22 @@ Rank order similarity score column
 
 ** Need a way to connect "hash pairs" with individual smart contract address. 
 """
+
+
+
+
+
 # loop through phishing['BYTECODE']
 phishing_list = list()
 
 for i in phishing['BYTECODE'].index:
       phishing_list.append(ppdeep.hash(phishing['BYTECODE'][i]))
       print("all phishing hashes inserted.")
+
+# add phishing_list into phishing df
+phishing['PPDEEP_1'] = phishing_list
+
+phishing['PPDEEP_2'] = phishing.loc[:, 'PPDEEP_1']
 
 #compare_phishing_list = [ppdeep.compare(p1, p2) for p1 in phishing_list for p2 in phishing_list]
 
@@ -94,17 +108,62 @@ for i in phishing['BYTECODE'].index:
 # place each hashed pair and similarity score in a tuple
 compare_phishing_list = list()
 
+"""
 for x in phishing_list:
       for y in phishing_list:
             if x != y:
-                  compare_phishing_list.append((x + "&" + y, ppdeep.compare(x, y)))
+                  compare_phishing_list.append((x + " & " + y, ppdeep.compare(x, y)))
+"""
 
+for x in phishing['PPDEEP_1']:
+      for y in phishing['PPDEEP_1']:
+            if x != y:
+                  compare_phishing_list.append((x + "," + y, ppdeep.compare(x, y)))
 
 # Convert list of tuple to dataframe with two new columns
 # rank order 'similarity score' column in descending order by similarity score
 # The idea is to go back to the pair of addresses for each pair that had a high similarity score and see if contract names are similar
 phishing_df = pd.DataFrame(compare_phishing_list, columns = ['hashed pair', 'similarity score'])
 
-phishing_df_2 = phishing_df.sort_values('similarity score', ascending=False)
+phishing_df_sorted = phishing_df.sort_values('similarity score', ascending=False)
 
-print(phishing_df_2)
+phishing_df_high_similar = phishing_df[phishing_df['similarity score'] > 0]
+
+#phishing_df_high_similar.to_csv("phishing_df_high_similar")
+
+phishing_df_high_similar[['PPDEEP_1', 'PPDEEP_2']] = phishing_df_high_similar['hashed pair'].str.split(',', expand=True)
+
+print(phishing_df_high_similar)
+
+merged_df = phishing_df_high_similar.merge(phishing, on='PPDEEP_1', how='left', indicator=True)
+
+merged_df_2 = phishing_df_high_similar.merge(phishing, on='PPDEEP_2', how='left', indicator=True)
+
+"""
+check merged_df.columns, merged_df_2.columns
+check for CONTRACT_ADDRESS pair associted with ppdeep hashed pair
+manually check contract address pair (with high similarity) in etherscan 
+
+merged_df['CONTRACT_ADDRESS'] -- address 1
+merged_df_2['CONTRACT_ADDRESS'] -- address 2
+
+
+note: 
+merged_df['PPDEEP_1'] == merged_df_2['PPDEEP_1_x']
+merged_df_2['PPDEEP_2'] == merged_df['PPDEEP_2_x']
+
+create new df
+
+phishing_pair_similar = {
+      'similarity': merged_df['similarity score'],
+      'hash_1': merged_df['PPDEEP_1'],
+      'hash_2': merged_df['PPDEEP_2_x'],
+      'address_1': merged_df['CONTRACT_ADDRESS'],
+      'address_2': merged_df_2['CONTRACT_ADDRESS'],
+      'label_1': merged_df['ADDRESS_NAME'],
+      'label_2': merged_df_2['ADDRESS_NAME']
+}
+
+phishing_pair_similar_df = pd.DataFrame(phishing_pair_similar)
+"""
+
