@@ -1,0 +1,20 @@
+[
+        {
+            "id": 1,
+            "name": "FXS",
+            "description": "Frax Shares - Showing a bullish trend with increasing prices. The exponential moving average (EMA) is trending upwards, indicating positive price momentum. The 1-day price change is positive, and the 7-day price change is also positive, reflecting a strong bullish sentiment.",
+            "behavior": "Bullish"
+        },
+        {
+            "id": 2,
+            "name": "FXS",
+            "description": "Frax Shares - Exhibiting a bearish trend with decreasing prices. The exponential moving average (EMA) is trending downwards, suggesting negative price momentum. The 1-day price change is negative, and the 7-day price change is also negative, indicating a bearish sentiment in the market.",
+            "behavior": "Bearish"
+        },
+        {
+            "id": 3,
+            "name": "FXS",
+            "description": "Frax Shares - Displaying a mixed behavior with no clear trend. The exponential moving average (EMA) is relatively flat, indicating a lack of strong momentum in either direction. The 1-day price change may be positive or negative, and the 7-day price change may also vary, suggesting uncertainty and a mixed sentiment among traders.",
+            "behavior": "Mixed"
+        }
+]
