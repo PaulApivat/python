@@ -1,0 +1,254 @@
+[
+    {
+      "id": 1,
+      "title": "Bitcoin Hits New All-Time High, Bullish Momentum Continues",
+      "topic": "Bullish"
+    },
+    {
+      "id": 2,
+      "title": "Regulatory Uncertainty Causes Volatility in Crypto Markets",
+      "topic": "Regulatory Clarity"
+    },
+    {
+      "id": 3,
+      "title": "Ethereum 2.0 Beacon Chain Successfully Launches",
+      "topic": "Product Launch"
+    },
+    {
+      "id": 4,
+      "title": "Hackers Steal Millions from Exchange, Security Breach Detected",
+      "topic": "Hack"
+    },
+    {
+      "id": 5,
+      "title": "Investors Pour Billions into Crypto Startups, Funding Reaches Record Levels",
+      "topic": "Investment"
+    },
+    {
+      "id": 6,
+      "title": "DeFi Protocol Launches Innovative Staking Derivatives",
+      "topic": "Staking Derivatives"
+    },
+    {
+      "id": 7,
+      "title": "NFT Artwork Sells for Record-Breaking Price at Auction",
+      "topic": "NFTs"
+    },
+    {
+      "id": 8,
+      "title": "Bitcoin Price Drops Sharply, Bearish Sentiment Dominates",
+      "topic": "Bearish"
+    },
+    {
+      "id": 9,
+      "title": "Artificial Intelligence Revolutionizes Crypto Trading Strategies",
+      "topic": "Artificial Intelligence"
+    },
+    {
+      "id": 10,
+      "title": "Virtual Reality Enters the Crypto Space, Promising Immersive Experiences",
+      "topic": "Virtual Reality"
+    },
+    {
+      "id": 11,
+      "title": "Ethereum Reaches New Milestone with Over 10 Million Active Addresses",
+      "topic": "Ethereum"
+    },
+    {
+      "id": 12,
+      "title": "New Crypto Exchange Launches, Aims to Disrupt Traditional Market",
+      "topic": "Product Launch"
+    },
+    {
+      "id": 13,
+      "title": "Crypto Market Surges as Institutional Investors Embrace Digital Assets",
+      "topic": "Bullish"
+    },
+    {
+      "id": 14,
+      "title": "Major Hack Exposes Vulnerabilities in DeFi Protocol",
+      "topic": "Hack"
+    },
+    {
+      "id": 15,
+      "title": "Investment Firm Allocates 5% of Portfolio to Bitcoin",
+      "topic": "Investment"
+    },
+    {
+      "id": 16,
+      "title": "Staking Derivatives Gain Popularity Among Crypto Traders",
+      "topic": "Staking Derivatives"
+    },
+    {
+      "id": 17,
+      "title": "Digital Artist Sells NFT Collection for Millions of Dollars",
+      "topic": "NFTs"
+    },
+    {
+      "id": 18,
+      "title": "Bitcoin Faces Strong Resistance, Bears Control Market",
+      "topic": "Bearish"
+    },
+    {
+      "id": 19,
+      "title": "Regulators Propose New Framework for Crypto Industry",
+      "topic": "Regulatory Clarity"
+    },
+    {
+      "id": 20,
+      "title": "New DeFi Project Launches with Revolutionary Features",
+      "topic": "Product Launch"
+    },
+    {
+    "id": 21,
+    "title": "Bitcoin Reaches $100,000 Milestone, Bull Run Intensifies",
+    "topic": "Bullish"
+    },
+    {
+    "id": 22,
+    "title": "Regulatory Crackdown on Crypto Exchanges Triggers Market Sell-Off",
+    "topic": "Regulatory Clarity"
+    },
+    {
+    "id": 23,
+    "title": "Ethereum Foundation Announces Grants for Innovative Projects",
+    "topic": "Product Launch"
+    },
+    {
+    "id": 24,
+    "title": "Crypto Exchange Suffers Security Breach, User Funds Compromised",
+    "topic": "Hack"
+    },
+    {
+    "id": 25,
+    "title": "Venture Capital Firm Raises $500 Million Fund for Crypto Investments",
+    "topic": "Investment"
+    },
+    {
+    "id": 26,
+    "title": "New Staking Derivatives Platform Promises High-Yield Opportunities",
+    "topic": "Staking Derivatives"
+    },
+    {
+    "id": 27,
+    "title": "Renowned Artist Launches Exclusive NFT Collection on Ethereum",
+    "topic": "NFTs"
+    },
+    {
+    "id": 28,
+    "title": "Bitcoin Plummets, Bear Market in Full Swing",
+    "topic": "Bearish"
+    },
+    {
+    "id": 29,
+    "title": "Artificial Intelligence Predicts Crypto Market Trends with High Accuracy",
+    "topic": "Artificial Intelligence"
+    },
+    {
+    "id": 30,
+    "title": "Virtual Reality Gaming Platform Integrates Blockchain and NFTs",
+    "topic": "Virtual Reality"
+    },
+    {
+    "id": 31,
+    "title": "Ethereum Upgrade Enhances Network Scalability and Efficiency",
+    "topic": "Ethereum"
+    },
+    {
+    "id": 32,
+    "title": "Major Crypto Exchange Unveils New Trading Features in Latest Update",
+    "topic": "Product Launch"
+    },
+    {
+    "id": 33,
+    "title": "Institutional Investors Predict Bullish Future for Crypto Market",
+    "topic": "Bullish"
+    },
+    {
+    "id": 34,
+    "title": "DeFi Protocol Exploited, Millions in User Funds Stolen",
+    "topic": "Hack"
+    },
+    {
+    "id": 35,
+    "title": "Hedge Fund Allocates Significant Capital to Bitcoin and Ethereum",
+    "topic": "Investment"
+    },
+    {
+    "id": 36,
+    "title": "New Staking Derivatives Offering Aims to Simplify Crypto Staking",
+    "topic": "Staking Derivatives"
+    },
+    {
+    "id": 37,
+    "title": "Celebrity Auctions NFT Artwork for Charity, Raises Millions",
+    "topic": "NFTs"
+    },
+    {
+    "id": 38,
+    "title": "Bitcoin Faces Strong Resistance at Key Price Level, Bears Dominate",
+    "topic": "Bearish"
+    },
+    {
+    "id": 39,
+    "title": "Regulatory Framework for Cryptocurrencies Still Lacks Consensus",
+    "topic": "Regulatory Clarity"
+    },
+    {
+    "id": 40,
+    "title": "New DeFi Project Revolutionizes Lending and Borrowing in Crypto",
+    "topic": "DeFi"
+    },
+    {
+    "id": 41,
+    "title": "Ethereum Smart Contract Platform Sees Surge in Developer Activity",
+    "topic": "Ethereum"
+    },
+    {
+    "id": 42,
+    "title": "Cryptocurrency Wallet Provider Launches Secure Mobile App",
+    "topic": "Product Launch"
+    },
+    {
+    "id": 43,
+    "title": "Market Sentiment Turns Bullish as Bitcoin Breaks Resistance Level",
+    "topic": "Bullish"
+    },
+    {
+    "id": 44,
+    "title": "Crypto Exchange Hacked, Millions of Dollars Worth of Assets Stolen",
+    "topic": "Hack"
+    },
+    {
+    "id": 45,
+    "title": "Institutional Investors Double Down on Crypto Amid Market Volatility",
+    "topic": "Investment"
+    },
+    {
+    "id": 46,
+    "title": "New Derivatives Platform Introduces Innovative Staking Mechanism",
+    "topic": "Staking Derivatives"
+    },
+    {
+    "id": 47,
+    "title": "Renowned Artist Collaborates with NFT Platform for Exclusive Collection",
+    "topic": "NFTs"
+    },
+    {
+    "id": 48,
+    "title": "Bitcoin Price Consolidates, Market Remains Uncertain",
+    "topic": "Bearish"
+    },
+    {
+    "id": 49,
+    "title": "Artificial Intelligence Enhances Crypto Trading Algorithms",
+    "topic": "Artificial Intelligence"
+    },
+    {
+    "id": 50,
+    "title": "Virtual Reality Metaverse Powered by Blockchain Gains Traction",
+    "topic": "Virtual Reality"
+    }
+]
+     
+  

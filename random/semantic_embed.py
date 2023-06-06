@@ -56,6 +56,7 @@ openai.api_key = os.environ.get("OPENAI_API_KEY")
 def get_embedding(text, model='text-embedding-ada-002'):
     return openai.Embedding.create(input=[text], model=model)['data'][0]['embedding']
 
+# indicate json file headlines are stored in.
 with open('fxs.json', 'r') as file:
     token_description = json.load(file)
 
@@ -80,7 +81,7 @@ collection.add(
     embeddings=embeddings
 )
 
-query = "FXS holders are sad."
+query = "FXS holders are ambivalent."
 embedding = get_embedding(query)
 results = collection.query(query_embeddings=[embedding], n_results=1)
 
