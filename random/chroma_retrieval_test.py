@@ -1,8 +1,13 @@
+# error: Skipping analyzing "chromadb": module is installed, but missing library stubs or py.typed marker 
+# this means mypy was able to find the module you were importing, but no corresponding type hints.
+
 import openai 
-import chromadb
+import chromadb   
 import os
+import re
 
 from collections.abc import Iterable, Container
+
 
 chroma_client = chromadb.Client()
 collection = chroma_client.create_collection(name="metrics")
@@ -169,4 +174,5 @@ for q in user_and_llm_queries:
                     "distances": results["distances"]
                     })
 
-# placeholder
+with open('results.txt', 'w') as file:
+    file.write('\n'.join(map(str, outputs)))
