@@ -94,14 +94,14 @@ def prompt(query: str) -> str:
 
 def open_ai_prompt(prompt: str, temp=0.3) -> str:
     response = openai.Completion.create(
-        engine-"text-davinci-003",
+        engine="text-davinci-003",
         prompt=prompt,
-        max_token=2047,
+        max_tokens=2047,
         temperature=temp
     )
     return response.choices[0].text.strip()
 
-def replace_ticker(queries: Iterable[T], ticker: str) -> List[T]:
+def replace_ticker(queries, ticker: str) -> list:
     return [query.replace('{ticker}', ticker) for query in queries]
 
 
@@ -156,5 +156,17 @@ for q in user_and_llm_queries:
         query_texts=[q["query"], q["expansion"]],
         n_results=1,
     )
+    print('\n')
+    print('user query: ', q["query"])
+    print('expansion query: ', q["expansion"])
+    print('ids:', results["ids"])
+    print('documents:', results["documents"])
+    print('documents:', results["distances"])
+    outputs.append({"user_query": q["query"],
+                    "expansion_query": q["expansion"],
+                    "ids": results["ids"],
+                    "documents": results["documents"],
+                    "distances": results["distances"]
+                    })
 
 # placeholder
