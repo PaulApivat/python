@@ -104,4 +104,57 @@ def open_ai_prompt(prompt: str, temp=0.3) -> str:
 def replace_ticker(queries: Iterable[T], ticker: str) -> List[T]:
     return [query.replace('{ticker}', ticker) for query in queries]
 
+
+def parse_metric_output(output: str) -> tuple:
+    # Match all characters (string) between quotes in the output
+    matches = re.findall(r'"([^"]*)"', output)
+
+    if len(matches) == 2:
+        return tuple(matches)
+    else:
+        return None
+
+assets = ["ETH", "BTC"]
+
+user_queries = [
+    "How has {ticker} performed over the last week?",
+    "How volatile is {ticker} trading in the past month?",
+    "Has {ticker} reached its all-time high recently?",
+    "What percentage of {ticker}'s total supply is already in circulation?",
+    "How close is {ticker} to its ATL?",
+    "Are there any upcoming major vesting events for {ticker}?",
+    "Are there any updates from the core developers for {ticker}?",
+    "Are the market participants bullish or bearish for {ticker}?",
+    "What's the price trend of {ticker} for the past 30 days?",
+    "What are the biggest price changes of {ticker} in the last 7 days?"
+]
+
+all_queries_assets = [ replace_ticker(user_queries, asset) for asset in assets ]
+# print(all_queries_assets)
+
+user_and_llm_queries = []
+
+for queries in all_queries_assets:
+    expanded_queries = [ open_ai_prompt(prompt(q)) for q in queries]
+    print(expanded_queries)
+    for index, eq in enumerate(expanded_queries):
+        user_and_llm_queries.append({"query": queries[index], "expansion": eq})
+print(user_and_llm_queries)
+
+# ChromaDB add collection
+for i, ticker in enumerate(assets):
+    collection.add(
+        documents=[vol(ticker), macd(ticker), rsi(ticker), price_snapshot(ticker), token_dis(ticker), vesting_sched(ticker), twitter_news(ticker)],
+        metadatas=[{"asset": ticker}, {"asset": ticker}, {"asset": ticker}, {"asset": ticker}, {"asset": ticker}, {"asset": ticker}, {"asset": ticker}],
+        ids=[ ticker+str(ind) for ind in range(1,8)]
+    )
+
+outputs = []
+
+for q in user_and_llm_queries:
+    results = collection.query(
+        query_texts=[q["query"], q["expansion"]],
+        n_results=1,
+    )
+
 # placeholder
