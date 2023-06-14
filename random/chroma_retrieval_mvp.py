@@ -20,21 +20,22 @@ def replace_ticker(queries, ticker: str) -> list:
 # User queries - batch single queries into a list; split across 2 assets - ETH & BTC
 assets = ["ETH", "BTC"]
 
-# Q1-3: Price Changes
-# Q4-5: Volume
-# Q6: RSI
+# Q1: Price Changes
+# Q2-3: Volume
+# Q4-6: RSI
 # Q7-9: Market Cap
 # Q10: Market Dominance
 # Q11-13: News
 user_queries = [
     "What are the biggest price changes of {ticker} in the last 30 days?", 
-    "How quickly has {ticker} price moved over the past 30 days?",
-    "How volatile is {ticker} trading in the past month?",
+    
 
     "What is the level of {ticker} buying over the past 30 days?",
     "What is the level of {ticker} selling over the past 30 days",
 
     "How does the level of {ticker} buying compare to the level of {ticker} selling for the past month?",
+    "How quickly has {ticker} price moved over the past 30 days?",
+    "How volatile is {ticker} trading in the past month?",
   
     "What is the current total dollar market value of {ticker}?",
     "Has {ticker} reached its all-time high recently?",
@@ -43,8 +44,7 @@ user_queries = [
     "How does the current total dollar market value of {ticker} compare to other projects?",
 
     "Are there any upcoming major vesting events for {ticker}?",
-    "Are there any updates from the core developers for {ticker}?",
-    "Are the market participants bullish or bearish for {ticker}?"
+    "Are there any updates from the core developers for {ticker}?"
 ]
 
 # user helper function to create two lists of queries for each ETH & BTC
@@ -109,38 +109,56 @@ pprint(user_and_llm_queries)
 # into individual tools
 
 
-# price change includes magnitude, speed and volatility of price changes. 
+# Price Change includes magnitude of price changes. 
 # note: combining 3 metrics into 1 implies 3 user queries should be matched to this one function
+# Volume includes: Buy and Sell volume
+# RSI include speed and volatiltiy of price changes. 
+
 def price_change(ticker: str) -> str:
     return f"""Name: {ticker} Price Change ({ticker}PC)
-
     Description: The ticker Price Change, or {ticker}PC, measures the biggest price changes of the ${ticker} token over the past 30 days including highest and lowest values. 
     This metric should provide insight into range of price movements for ${ticker} over the past 30 days; this could be percentage change between highest and lowest values.
-    Finally, this indicator shows how fast prices of {ticker} has changed over the past 30 days; this could be measured as percentage change over that time period. 
-
     When to use: Use {ticker}PC to get a better understanding of the biggest price changes of {ticker} in the past 30 days.
-    {ticker}PC may also indicate how quickly {ticker} price has moved. 
-    Finally, this data can be used to understand the risk associated with investing in ${ticker}.
     """
 
 def volume(ticker: str) -> str:
-    return f"""
+    return f"""Name: {ticker} Exchange Trade Volume Metrics ({ticker}VOL)
+    Description: This metric provides a comprehensive overview of buying and selling activity of ${ticker} over the past 30 days, across major exchanges.
+    This metric includes total number of buyers, the total amount of ${ticker} purchased and sold, compared to total supply. 
+    Finally, volume should be calculated at the average price of ${ticker} over the past 30 days.
+    When to use: Use {ticker}VOL to get get a better understanding of current sentiment of the ${ticker} market, context for current price of ${ticker}, 
+    and potential for future price movements. 
     """
 
 
 def rsi(ticker: str) -> str:
-    return f"""
+    return f""" {ticker} Relative Strength Index ({ticker}RSI)
+    Description: The {ticker} Relative Strength Index, or {ticker}RSI, shows the relative levels of buying and selling volume for {ticker} over the past month.
+    This metric should provide a comparison of the total {ticker} bought and sold over the past 30 days, ideally with a visual representation of the data.
+    This indicator shows how fast prices of {ticker} has changed over the past 30 days. Traditionally, the ${ticker} token is considered overbought when the {ticker}RSI is above 70 and oversold when it's below 30.
+    When to use: Use {ticker}RSI when you want to identify potentially overbought or oversold conditions for the ${ticker} token.
+    {ticker}RSI may indicate how quickly {ticker} price has moved. This can help inform decisions about when to buy or sell the token.
     """
 
 def market_cap(ticker: str) -> str:
-    return f"""
+    return f""" {ticker} Market Cap
+    Description: The {ticker} Market Cap, or {ticker}MC, shows the total dollar market value of ${ticker}. 
+    The metric should provide the total dollar market value of ${ticker}, as well as a comparison to its all-time high price. 
+    Additionally, the total dollar market value of ${ticker} should also be compared to its all-time-low price.
+    When to use: Use {ticker}MC to understand the total market capitalization of the token and whether or not it has recently reached its
+    all-time highs or all-time lows.
     """
 
 def market_dom(ticker: str) -> str:
-    return f"""
+    return f""" {ticker} Market Dominance ({ticker}MD)
+    Description: This metric shows the current total dollar market value of {ticker} compared to other projects. 
+    When to use: Use {ticker}MD to gain a better understanding of {ticker}'s relative value compared to other projects. 
     """
 
 def news(ticker: str) -> str:
-    return f"""
+    return f"""Notable News for {ticker}
+    Description: The {ticker}NEWS metric gathers recent tweets and Twitter threads for notable events related to the {ticker} token.
+    This includes notable information about major vesting events, project updates, announcements, and discussions surrounding the token from core developers and official team sources. 
+    This can include everything from exchange listings, collaborations, partnerships, to major events and milestones and product updates.
+    When to use: This information can be used to inform investors of potential market movements related to the release of {ticker} tokens.
     """
-
