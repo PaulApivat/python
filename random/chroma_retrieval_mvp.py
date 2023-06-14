@@ -28,21 +28,15 @@ assets = ["ETH", "BTC"]
 # Q11-13: News
 user_queries = [
     "What are the biggest price changes of {ticker} in the last 30 days?", 
-    
-
     "What is the level of {ticker} buying over the past 30 days?",
     "What is the level of {ticker} selling over the past 30 days",
-
     "How does the level of {ticker} buying compare to the level of {ticker} selling for the past month?",
     "How quickly has {ticker} price moved over the past 30 days?",
     "How volatile is {ticker} trading in the past month?",
-  
     "What is the current total dollar market value of {ticker}?",
     "Has {ticker} reached its all-time high recently?",
     "How close is {ticker} to its ATL?",
-
     "How does the current total dollar market value of {ticker} compare to other projects?",
-
     "Are there any upcoming major vesting events for {ticker}?",
     "Are there any updates from the core developers for {ticker}?"
 ]
@@ -162,3 +156,38 @@ def news(ticker: str) -> str:
     This can include everything from exchange listings, collaborations, partnerships, to major events and milestones and product updates.
     When to use: This information can be used to inform investors of potential market movements related to the release of {ticker} tokens.
     """
+
+
+
+# ChromaDB add collection
+chroma_client = chromadb.Client()
+collection = chroma_client.create_collection(name="feeds")
+
+for i, ticker in enumerate(assets):
+    collection.add(
+        documents=[price_change(ticker), volume(ticker), rsi(ticker), market_cap(ticker), market_dom(ticker), news(ticker)],
+        metadatas=[{"asset": ticker}, {"asset": ticker}, {"asset": ticker}, {"asset": ticker}, {"asset": ticker}, {"asset": ticker}],
+        ids=[ ticker+str(ind) for ind in range(1,7)]
+    )
+
+outputs = []
+
+for q in user_and_llm_queries:
+    results = collection.query(
+        query_texts=[q["query"], q["expansion"]],
+        n_results=1,
+    )
+    print('\n')
+    print('user query: ', q["query"])
+    print('expansion query: ', q["expansion"])
+    print('ids:', results["ids"])
+    print('documents:', results["documents"])
+    print('distances:', results["distances"])
+    outputs.append({"user_query": q["query"],
+                    "expansion_query": q["expansion"],
+                    "ids": results["ids"],
+                    "documents": results["documents"],
+                    "distances": results["distances"]
+                    })
+
+
