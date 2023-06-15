@@ -2,6 +2,9 @@ import openai
 import chromadb   
 import os
 import re
+import time
+
+from langchain import OpenAI, SQLDatabase, SQLDatabaseChain 
 
 from collections.abc import Iterable, Container
 from pprint import pprint
@@ -191,3 +194,22 @@ for q in user_and_llm_queries:
                     })
 
 
+
+# langchain to connect query to SQLite
+db = SQLDatabase.from_uri("sqlite:///../generate_data/demo.db")
+
+llm = OpenAI(temperature=0, verbose=True)
+
+db_chain = SQLDatabaseChain.from_llm(llm, db, verbose=True)
+
+# What are the biggest price changes of ETH in the last 30 days?
+#db_chain.run(outputs[0]['user_query'])
+
+#db_chain.run([outputs[i]['user_query'] for i in range(len(outputs))])
+
+# slow down
+for i in range(len(outputs)):
+    result = db_chain.run([outputs[i]])
+    print(result)
+    print('\n')
+    time.sleep(1)
