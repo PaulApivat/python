@@ -1,5 +1,6 @@
 import pandas as pd
 import random
+import sqlite3
 
 """
 Prompt
@@ -54,4 +55,13 @@ df = pd.DataFrame(data)
 # Round the values to 2 decimal places
 df = df.round(2)
 
-print(df)
+# connect to the SQLite database
+conn = sqlite3.connect('demo.db')
+
+# push df to table in database
+df.to_sql(name='market_dom', con=conn, if_exists='replace', index=False)
+
+# close db connection
+conn.close()
+
+print("---- data from market_dom pushed successfully ----.")

@@ -1,5 +1,6 @@
 import pandas as pd
 import random
+import sqlite3
 
 """
 Prompt:
@@ -14,7 +15,7 @@ Generate a python dataframe and data with the following column descriptions:
 random.seed(42)
 
 # Define the number of days
-num_days = 30
+num_days = 90
 
 # Generate random ETH prices between 800 and 2500
 eth_prices = [random.uniform(800, 2500) for _ in range(num_days)]
@@ -30,4 +31,13 @@ df = pd.DataFrame(data)
 # Round the values to 2 decimal places
 df = df.round(2)
 
-print(df)
+# connect to the SQLite database
+conn = sqlite3.connect('demo.db')
+
+# push df to table in database
+df.to_sql(name='price_change', con=conn, if_exists='replace', index=False)
+
+# close db connection
+conn.close()
+
+print("---- data from price_changed pushed successfully ----.")

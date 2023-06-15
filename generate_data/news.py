@@ -1,6 +1,8 @@
 import json
 import random
+import pandas as pd
 from pprint import pprint
+import sqlite3
 
 """
 Prompt
@@ -49,6 +51,17 @@ for i in range(num_days):
     data.append(news_dict)
 
 # Convert the data to JSON format
-json_data = json.dumps(data, indent=4)
+#json_data = json.dumps(data, indent=4)
 
-pprint(data)
+df = pd.DataFrame(data)
+
+# connect to the SQLite database
+conn = sqlite3.connect('demo.db')
+
+# push df to table in database
+df.to_sql(name='news', con=conn, if_exists='replace', index=False)
+
+# close db connection
+conn.close()
+
+print("---- data from news pushed successfully ----.")
