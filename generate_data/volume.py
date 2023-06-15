@@ -2,6 +2,7 @@ import pandas as pd
 import random
 
 """
+Prompt
 Generate a python dataframe and data with the following column descriptions:
 
 1. Buyers: Total number of buyers randomized over 90 days, highest value = 2 million, lowest value = 500K

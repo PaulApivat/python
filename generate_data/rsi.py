@@ -2,6 +2,7 @@ import pandas as pd
 import random
 
 """
+Prompt
 Generate a python dataframe and data with the following column descriptions:
 
 1. Purchased: Total amount of ETH purchased, ranging from 0 - 2.8K, randomized over 90 days.
