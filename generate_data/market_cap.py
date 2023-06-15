@@ -10,6 +10,7 @@ Generate a python dataframe and data with the following column descriptions:
 2. Total Supply: Total supply of ETH, day to day, ranging from 100 million to 120 million.
 3. Market Cap: ETH Price (column 1) multiplied by Total Supply (column 2)
 
+Then repeat the above for BTC, but combine them in the same dataframe.
 """
 
 # Set the random seed for reproducibility
@@ -18,16 +19,24 @@ random.seed(42)
 # Define the number of days
 num_days = 90
 
-# Generate random data for each column
+# Generate random data for ETH
 eth_price = [random.uniform(800, 2500) for _ in range(num_days)]
-total_supply = [random.randint(100000000, 120000000) for _ in range(num_days)]
-market_cap = [eth_price[i] * total_supply[i] for i in range(num_days)]
+eth_total_supply = [random.uniform(100e6, 120e6) for _ in range(num_days)]
+eth_market_cap = [price * supply for price, supply in zip(eth_price, eth_total_supply)]
+
+# Generate random data for BTC
+btc_price = [random.uniform(800, 2500) for _ in range(num_days)]
+btc_total_supply = [random.uniform(15e6, 20e6) for _ in range(num_days)]
+btc_market_cap = [price * supply for price, supply in zip(btc_price, btc_total_supply)]
 
 # Create the DataFrame
 data = {
     'ETH Price': eth_price,
-    'Total Supply': total_supply,
-    'Market Cap': market_cap
+    'ETH Total Supply': eth_total_supply,
+    'ETH Market Cap': eth_market_cap,
+    'BTC Price': btc_price,
+    'BTC Total Supply': btc_total_supply,
+    'BTC Market Cap': btc_market_cap
 }
 df = pd.DataFrame(data)
 
