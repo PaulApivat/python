@@ -1,4 +1,5 @@
 from pprint import pprint
+from typing import Mapping, Tuple, Iterator
 
 
 # nested dictionary
@@ -68,3 +69,45 @@ print("\n")
 print("------- recursive_items on D1 -------")
 for key, value in recursive_items(D1):
     print(key, value)
+
+# from typing import Mapping, Tuple, Iterator
+
+my_dict = {
+    "isbn": "123-456-222",
+    "author": {"lastname": "Doe", "firstname": "Jane"},
+    "editor": {"lastname": "Smith", "firstname": "Jane"},
+    "title": "The Ultimate Database Study Guide",
+    "category": ["Non-Fiction", "Technology"],
+    "first": {
+        "second": {"third": {"fourth": {"blah": "yadda"}}},
+        "fifth": {"sixth": "seventh"},
+    },
+}
+
+def traverse_dict(nested: Mapping, parent_key="", keys_to_not_traverse_further=tuple()) -> Iterator[Tuple[str, str]]:
+    """Each key is joined with it's parent using dot as a separator.
+
+    Once a `parent_key` matches `keys_to_not_traverse_further`
+    it will no longer find its child dicts.
+    """
+    for key, value in nested.items():
+        if isinstance(value, Mapping) and key not in keys_to_not_traverse_further:
+            yield from traverse_dict(value, f"{parent_key}.{key}", keys_to_not_traverse_further)
+        else:
+            yield f"{parent_key}.{key}", value 
+
+print("\n")
+print("------- traverse_dict on root -------")
+for k, v in traverse_dict(root):
+    print(k, v)
+
+
+print("\n")
+print("------- traverse_dict on D1 -------")
+for k, v in traverse_dict(D1):
+    print(k, v)
+
+print("\n")
+print("------- traverse_dict on my_dict -------")
+for k, v in traverse_dict(my_dict):
+    print(k, v)
