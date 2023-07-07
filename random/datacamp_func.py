@@ -66,3 +66,38 @@ try:
     print(my_func)
 except NameError as e:
     print(e)
+
+
+# What is the output of this code?
+lst = [15, 9, 55, 41, 35, 20, 62, 49]
+
+def compute(value):
+    def Average():
+        print(sum(value) / len(value))
+    return Average
+
+func = compute(lst)
+del(lst)
+len(func.__closure__)
+
+print(len(func.__closure__))
+
+# What is the output of this code?
+def my_function(_list, _int):
+    new_int = _int * 10
+    _list.append(new_int)
+    return _list
+
+l = []
+v = 2
+print(my_function(l, v))
+
+# What is the output of this code?
+@check_list
+def my_func(value):
+    print(value)
+
+try:
+    print([1,4,2])
+except AssertionError:
+    print("Didn't return a list.")
