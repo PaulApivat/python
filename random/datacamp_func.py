@@ -93,6 +93,8 @@ v = 2
 print(my_function(l, v))
 
 # What is the output of this code?
+"""
+
 @check_list
 def my_func(value):
     print(value)
@@ -101,3 +103,43 @@ try:
     print([1,4,2])
 except AssertionError:
     print("Didn't return a list.")
+
+"""
+
+# ---------- Which line of code is missing -----------
+from contextlib import contextmanager
+
+@contextmanager
+def my_alarm():
+    print("Wake up!")
+    yield 4
+    print("Bye!")
+
+# Create the context manager object
+alarm = my_alarm()
+
+# Use the context manager object within the with statement
+with alarm as time_left:
+    print('{} hours left'.format(time_left))
+
+
+# ----------- Complete the code (global/ local variables)------
+
+my_str = "ThIs Is a mESsy sTrInG"
+def my_function():
+    global my_str
+    my_str = my_str.lower()
+    return my_str
+
+print(my_str)
+
+
+# -------- Select the code to return the output -----------
+
+def parent_func():
+    def child_func(x = 100):
+        print(x * 1.08)
+    return child_func
+
+output = parent_func()
+output(23)
