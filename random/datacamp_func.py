@@ -143,3 +143,29 @@ def parent_func():
 
 output = parent_func()
 output(23)
+
+# ------- What is the output of this code ? -----------
+
+import time 
+def take_timeout(k=20):
+    """Iterates over the list.
+
+    Args:
+        k (int): number of iterations
+    """
+    time.sleep(k)
+
+print(take_timeout.__name__)
+
+
+# -------- example decorator ---------
+def eur_to_dol(func):
+    def wrapper(a,b):
+        return func(a, b * 1.08)
+    return wrapper
+
+@eur_to_dol
+def budgeting(a,b):
+    print(a*b)
+
+budgeting(20, 34)
