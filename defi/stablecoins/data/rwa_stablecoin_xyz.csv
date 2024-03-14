@@ -1,15 +1,15 @@
 ﻿name,ticker,networks,market_cap,tbills_amount_est,price,pegged_currency,underlying_assets,underlying_assets_tbills,incorporation_country,regulatory,rating_by_bluechip,weekly_active_addresses,weekly_transfer_volume,contract_addresses
 Tether USD,USDT,,"104,358,614,226","67,850,470,784",0.9995,US Dollar,Money Market - Fund+ 6 More,us_treasury_debt,Hong Kong,FinCEN - Financial Crimes Enforcement Network,D,"3,270,262","144,117,337,923",4 Addresses
-Circle USD Coin,USDC,,"26,963,328,179","15,342,000,000",0.9993,US Dollar,Money Market - Fund+ 3 More,us_treasury_debt,United States of America,FinCEN - Financial Crimes Enforcement Network,B+,"564,482","164,698,867,553",8 Addresses
+Circle USD Coin,USDC,,"26,739,379,540","7,391,263,608",0.9993,US Dollar,Money Market - Fund+ 3 More,us_treasury_debt,United States of America,FinCEN - Financial Crimes Enforcement Network,B+,"564,482","164,698,867,553",8 Addresses
 MakerDAO Dai,DAI,,"3,193,386,019","1,680,000,000",0.9993,US Dollar,Structured Credit+ 4 More,us_treasury_debt,,,B+,"9,752","17,641,832,182",0x6b1...271d0f
 First Digital Labs USD,FDUSD,,"2,921,741,503","405,300,000",0.9987,US Dollar,Money Market - RRP+ 2 More,us_treasury_debt,Hong Kong,,C,122,"4,661,416,130",0xc5f...e16409
 Techteryx TrueUSD,TUSD,,"1,181,062,581",,1,US Dollar,Money Market - Fund+ 2 More,us_treasury_debt,British Virgin Islands,,D,546,"22,993,645",2 Addresses
 Ethena USDe,USDe,,"955,277,135",,0.9992,US Dollar,Derivatives - Short ETHCryptocurrencies - ETH,,,,,"3,381","827,400,699",0x4c9...1e68b3
 Frax Finance,FRAX,,"645,819,263",,0.9944,US Dollar,Money Market - Fund+ 4 More,us_treasury_debt,,,D,479,"282,238,508",0x853...75b99e
-Binance USD (Paxos),BUSD,,"513,627,130","83,951,000",1.0161,US Dollar,US Treasury Debt+ 2 More,us_treasury_debt,United States of America,NYDFS - New York State Department of Financial Services,,"21,004","277,514,362",2 Addresses
+Binance USD (Paxos),BUSD,,"99,431,339",,1.0161,US Dollar,US Treasury Debt+ 2 More,us_treasury_debt,United States of America,NYDFS - New York State Department of Financial Services,,"21,004","277,514,362",2 Addresses
 Tether Euro,EURT,,"435,342,938","283,045,376",1.0884,Euro,Money Market - Fund+ 6 More,us_treasury_debt,Hong Kong,FinCEN - Financial Crimes Enforcement Network,D,91,"2,357,772",0xc58...ede491
-Paypal USD (Paxos),PYUSD,,"221,510,404","304,927,000",0.9974,US Dollar,Money Market - RRP+ 2 More,us_treasury_debt,United States of America,NYDFS - New York State Department of Financial Services,A-,928,"159,288,856",0x6c3...23a0e8
-Pax Dollar (Paxos),USDP,,"188,535,674","4,933,583",0.9984,US Dollar,US Treasury Debt+ 2 More,us_treasury_debt,United States of America,NYDFS - New York State Department of Financial Services,A-,326,"119,933,519",0x8e8...8289e1
+Paypal USD (Paxos),PYUSD,,"301,175,241","4,980,250",0.9974,US Dollar,Money Market - RRP+ 2 More,us_treasury_debt,United States of America,NYDFS - New York State Department of Financial Services,A-,928,"159,288,856",0x6c3...23a0e8
+Pax Dollar (Paxos),USDP,,"353,101,046","124,525,000",0.9984,US Dollar,US Treasury Debt+ 2 More,us_treasury_debt,United States of America,NYDFS - New York State Department of Financial Services,A-,326,"119,933,519",0x8e8...8289e1
 Mountain Protocol USD,USDM,,"149,420,168","151,967,269",0.9993,US Dollar,Public Equity - Treasury ETF+ 4 More,us_treasury_debt,Bermuda,BMA - Bermuda Monetary Authority,B+,13,"850,059",2 Addresses
 Gemini Dollar,GUSD,,"146,121,444","10,213,348",0.9991,US Dollar,Money Market - Fund+ 2 More,us_treasury_debt,United States of America,NYDFS - New York State Department of Financial Services,A,550,"31,333,154",0x056...b6d5cd
 Stasis Euro,EURS,,"135,501,891",,1.0916,Euro,Bank Deposits - EUR,,Malta,MFSA - Malta Financial Services Authority,,52,"1,220,504",0xdb2...807ad8
