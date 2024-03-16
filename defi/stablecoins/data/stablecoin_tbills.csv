@@ -1,0 +1,20 @@
+﻿name,ticker,networks,market_cap_current,market_cap_earliest,tbills_amount_current,tbills_amount_earliest,attestation_interval,date_current_attestation,date_earliest_attestation,price,pegged_currency,underlying_assets,underlying_assets_tbills,incorporation_country,regulatory,rating_by_bluechip,weekly_active_addresses,weekly_transfer_volume,contract_addresses
+Tether USD,USDT,,"91,572,956,801","62,610,829,196","63,086,013,400","15,279,528,705",quarterly,2023-12-31,2021-07-30,0.9995,US Dollar,Money Market - Fund+ 6 More,us_treasury_debt,Hong Kong,FinCEN - Financial Crimes Enforcement Network,D,"3,270,262","144,117,337,923",4 Addresses
+Circle USD Coin,USDC,,"26,739,379,540","22,176,182,251","15,342,000,000","2,700,000,000",monthly,2024-01-31,2021-05-28,0.9993,US Dollar,Money Market - Fund+ 3 More,us_treasury_debt,United States of America,FinCEN - Financial Crimes Enforcement Network,B+,"564,482","164,698,867,553",8 Addresses
+MakerDAO Dai,DAI,,"5,190,000,000","5,062,000,000","1,680,000,000","640,000,000",yearly,2023-12-31,2022-12-31,0.9993,US Dollar,Structured Credit+ 4 More,us_treasury_debt,,,B+,"9,752","17,641,832,182",0x6b1...271d0f
+First Digital Labs USD,FDUSD,,"2,578,169,834","965,652,971","1,531,578,778","857,505,738",monthly,2024-01-31,2023-11-30,0.9987,US Dollar,Money Market - RRP+ 2 More,us_treasury_debt,Hong Kong,,C,122,"4,661,416,130",0xc5f...e16409
+Frax Finance,FRAX,,"645,819,263",,"1,940,686",,real_time,,,0.9944,US Dollar,Money Market - Fund+ 4 More,us_treasury_debt,,,D,479,"282,238,508",0x853...75b99e
+Tether Euro,EURT,,"435,342,938",,"283,045,376",,,,,1.0884,Euro,Money Market - Fund+ 6 More,us_treasury_debt,Hong Kong,FinCEN - Financial Crimes Enforcement Network,D,91,"2,357,772",0xc58...ede491
+Paypal USD (Paxos),PYUSD,,"301,175,241","44,376,440","303,541,803","43,860,001",monthly,2024-01-31,2023-08-31,0.9974,US Dollar,Money Market - RRP+ 2 More,us_treasury_debt,United States of America,NYDFS - New York State Department of Financial Services,A-,928,"159,288,856",0x6c3...23a0e8
+Pax Dollar (Paxos),USDP,,"353,101,046","142,326,370","124,525,000","142,326,370",monthly,2024-01-31,2018-12-31,0.9984,US Dollar,US Treasury Debt+ 2 More,us_treasury_debt,United States of America,NYDFS - New York State Department of Financial Services,A-,326,"119,933,519",0x8e8...8289e1
+Mountain Protocol USD,USDM,,"152,286,933","2,468,314","151,967,269","2,284,325",monthly,2024-02-29,2023-09-30,0.9993,US Dollar,Public Equity - Treasury ETF+ 4 More,us_treasury_debt,Bermuda,BMA - Bermuda Monetary Authority,B+,13,"850,059",2 Addresses
+Gemini Dollar,GUSD,,"37,478,807","21,526,280","10,213,348","21,526,280",monthly,2024-01-31,2019-05-31,0.9991,US Dollar,Money Market - Fund+ 2 More,us_treasury_debt,United States of America,NYDFS - New York State Department of Financial Services,A,550,"31,333,154",0x056...b6d5cd
+GMO Trust Z.com USD,ZUSD,,"19,033,372","16,283,065","17,901,832","1,033,658",monthly,2024-01-31,2023-07-31,0.9982,US Dollar,US Treasury DebtBank Deposits - USD,us_treasury_debt,United States of America,NYDFS - New York State Department of Financial Services,,7,"236,883",2 Addresses
+Verified USD,USDV,,"5,630,839",,"5,630,839",,daily,,,0.9964,US Dollar,US Treasury Debt - Tokenized,us_treasury_debt,British Virgin Islands,MAS - Monetary Authority of Singapore,,34,"3,584,834",0x0e5...25c7a8
+,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,
