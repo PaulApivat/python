@@ -1059,4 +1059,17 @@ They are comparatively small in total value today, but is worth keeping an eye o
 
 [Ethena](https://www.ethena.fi/) has garnered a lot of attention, growing to [$1 billion in marketcap](https://defillama.com/stablecoin/ethena-usde) in a very short time. Underpinning this trend is a desire by some corners of crypto to develop stable values that do _not_ rely on the traditional financial system. Synthetic dollars are highly experimental and the jury is still out on whether they'll be around in a decade, but we see this as an alternative to stablecoins holding US Treasuries, instead favoring mnore crypto-native assets. 
 
+#### References
+
+1. Tether USD (USDT) Independent Auditor Report: https://tether.to/en/transparency/#reports 
+2. Circle USD Coin (USDC) Monthly assurance and transparency: https://www.circle.com/en/transparency 
+3. MakerDAO (DAI) Financial Report (2023) by Steakhouse Financial: https://www.steakhouse.financial/projects/makerdao-financial-report-2023 
+4. First Digital Labs USD (FDUSD) Attestation Reports: https://firstdigitallabs.com/
+5. Frax Finance (FRAX) Frax Stablecoin Real-time Balance Sheet: https://facts.frax.finance/frax/balance-sheet 
+6. PayPal USD (PYSUD) Transparency Reports issued by Paxos: https://paxos.com/pyusd-transparency/ 
+7. Pax Dollar (USDP) Transparency Reports issued by Paxos: https://paxos.com/usdp-transparency/ 
+8. Mountain Protocol USD (USDM) Reserves - Attestations: https://docs.mountainprotocol.com/reference/usdm-reserves-attestations 
+9. Gemini Dollar (GUSD) Historical Monthly Attestations: https://www.gemini.com/dollar 
+10. GMO Trust Z.com USD (ZUSD) Monthly Attestation Reports: https://stablecoin.z.com/attestation/ 
+11. Verified USD (USDV) Transparency: https://usdv.money/transparency 
 
