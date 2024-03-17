@@ -1,10 +1,10 @@
-## Can Stablecoins by a critical sink for US Treasuries?
+## Can stablecoins be a critical sink for U.S. Treasuries?
 
 Author: [paulx.eth](https://warpcast.com/paulx.eth) on Farcaster | [paulapivat](https://twitter.com/paulapivat) on X
 
 ### Background
 
-The total current stablecoin market cap is approximately [$147 billion](https://defillama.com/stablecoins). Different stablecoin models have been tried over the years, with fiat, crypto and algorithmic backing as the broad categories. The collapse of [Terra Luna](https://www.nber.org/papers/w31160) highlighted the importance of collateral backing, compelling the industry to adopt safer collateral assets, namely US Treasury Debt for dollar-pegged stablecoins.
+The total current stablecoin market cap is approximately [$147 billion](https://defillama.com/stablecoins). Different stablecoin models have been tried over the years, with fiat, crypto and algorithmic backing as the broad categories. The collapse of [Terra Luna](https://www.nber.org/papers/w31160) highlighted the importance of reserve backing, compelling the industry to adopt safer collateral assets, namely U.S. Treasury Debt for dollar-pegged stablecoins.
 
 **But how much of the top stablecoins are backed by US Treasuries?**
 
